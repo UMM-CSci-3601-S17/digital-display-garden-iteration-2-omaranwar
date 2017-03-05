@@ -1,5 +1,8 @@
 package umm3601.digitalDisplayGarden;
 
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -9,8 +12,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.Iterator;
+import org.bson.Document;
 
 public class ExcelParser {
+    public static MongoClient mongoClient = new MongoClient();
     private static final String FILE_NAME = "/home/Dogxx000/IdeaProjects/digital-display-garden-iteration-1-claudearabo/server/src/main/java/umm3601/digitalDisplayGarden/AccessionList2016.xlsx";
 
     public static void main(String[] args) {
@@ -61,6 +66,18 @@ public class ExcelParser {
             System.out.println(cellValues.length);
             System.out.println(cellValues[1].length);
             printDoubleArray(cellValues);
+
+            Plant aPlant = new Plant(cellValues[10][0], cellValues[10][1], cellValues[10][2], cellValues[10][3],
+                    cellValues[10][6]);
+
+            MongoDatabase test = mongoClient.getDatabase("test");
+            //test.createCollection("plants");
+            MongoCollection plants = test.getCollection("plants");
+
+            plants.insertOne(aPlant.toBSON());
+            System.out.println(aPlant.commonName);
+
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
