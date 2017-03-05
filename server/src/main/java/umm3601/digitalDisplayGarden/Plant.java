@@ -1,6 +1,8 @@
 package umm3601.digitalDisplayGarden;
 import org.bson.Document;
 
+import java.util.Map;
+
 /**
  * Created by benek020 on 3/5/17.
  */
@@ -10,6 +12,7 @@ public class Plant {
     public String cultivar;
     public String source;
     public String gardenLocation;
+    public Map map;
 
     public Plant(String id, String commonName, String cultivar, String source, String gardenLocation){
         this.id = id;
@@ -17,6 +20,10 @@ public class Plant {
         this.cultivar = cultivar;
         this.source = source;
         this.gardenLocation = gardenLocation;
+    }
+
+    public Plant(Map<String, String> map){
+        this.map = map;
     }
 
     public Document toBSON(){
@@ -28,5 +35,9 @@ public class Plant {
         doc.append("gardenLocation", gardenLocation);
 
         return doc;
+    }
+
+    public Document toBSONMap(){
+        return new Document(map);
     }
 }

@@ -11,7 +11,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
+
 import org.bson.Document;
 
 public class ExcelParser {
@@ -70,11 +73,23 @@ public class ExcelParser {
             Plant aPlant = new Plant(cellValues[10][0], cellValues[10][1], cellValues[10][2], cellValues[10][3],
                     cellValues[10][6]);
 
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("id", cellValues[11][0]);
+            map.put("commonName", cellValues[11][1]);
+            map.put("cultivar", cellValues[11][2]);
+            map.put("source", cellValues[11][3]);
+            map.put("gardenLocation", cellValues[11][6]);
+            Plant anotherPlant = new Plant(map);
+            Document doc = new Document();
+            doc.putAll(map);
+
             MongoDatabase test = mongoClient.getDatabase("test");
-            //test.createCollection("plants");
+
+
             MongoCollection plants = test.getCollection("plants");
 
             plants.insertOne(aPlant.toBSON());
+            plants.insertOne(doc);
             System.out.println(aPlant.commonName);
 
 
