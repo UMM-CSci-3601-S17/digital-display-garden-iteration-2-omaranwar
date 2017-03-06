@@ -16,7 +16,7 @@ When playing around with this first method, we learned some important things.
 We tried to fix this for a while and gave up, we rectify this problem when we start editing the 2D array.
 Unfortunately, we can't grab any data from the first row. 
 2. The default size for an `xlsx` document is **1000 rows, and 25 columns**.
-As a consequence, our array is 1000 rows tall, and 25 columns wide, and each non-filled index is `null'.
+As a consequence, our array is 1000 rows tall, and 25 columns wide, and each non-filled index is `null`.
 We spend a lot of time shrinking the size of this array.  
 3. General 2D array facts, for a 2D array named `cellValues`:    
   * `cellValues.length` gives us the height of the array   
