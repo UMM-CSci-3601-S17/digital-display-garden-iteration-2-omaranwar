@@ -23,5 +23,4 @@ We spend a lot of time shrinking the size of this array.
   * `cellValues[i].length` gives us the length of a given row, `i`.  
 
 ##Step 2: Horizontally Collapse the Array  
-Because most of our 2D array is null at this point, we horizontally collapse the array to get rid of all columns that are just filled with nulls.  
-We could have collapsed both vertically and horizontally at the same time, but for read and write simplicity, we opted for doing each of these steps individually.
+Because most of our 2D array is null at this point, we horizontally collapse the array to get rid of all columns that are just filled with nulls. We could have collapsed both vertically and horizontally at the same time, but for read and write simplicity, we opted for doing each of these steps individually.
