@@ -76,6 +76,6 @@ There are some points in our project where passing this around can break things.
 We remove spaces, and equal signs. This is also a good oportunity to make our keys match what is specified by the standards committee. We change keys like `#` to `id`, and `Common Name` to `commonName`.  
 
 ##Step 6: Populating the Database: `populateDatabase()`  
-This method starts at row 4 (the first row after the key rows). It works by moving from left to right across each row, and at every cell, adding that cell's value as the value of a hashmap with its corresponding key as the key. The hashmap will be added into a document that gets added directly into the database. After this, the method moves to the next row, and repeats until it is at the bottom of the array.  
+This method starts at `row 4` (the first row after the key rows). It works by moving from left to right across each row, and at every cell, adding that cell's value as the value of a hashmap with its corresponding key as the key. The hashmap will be added into a document that gets added directly into the database. After this, the method moves to the next row, and repeats until it is at the bottom of the array.  
 
 **And that! Is how you turn any XLSX document into a populating database!** 
