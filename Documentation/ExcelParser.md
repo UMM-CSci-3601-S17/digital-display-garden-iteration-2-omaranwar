@@ -31,10 +31,11 @@ We could have collapsed both vertically and horizontally at the same time, but f
 ###Locating the collapse point: `collapseHorizontally()`  
 In the example `xlsx` file below, there are three rows that are grayed out. We designate these three rows (rows 1 through 3) as *key rows*. When collapsing horizontally, we start at row one at the rightmost part of our 2D array. We check to see if any of the three rows in the column are not null. If they are null, we will shift one column to the left and repeat. We keep doing this process until we reach a cell that is not null. 
 
-![HorizontalCollapse](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-1-claudearabo/blob/MakeMarkdownDocumentation/Documentation/Graphics/HorizontalCorrected.png)  
-
 ###Collapsing the array: `trimArrayHorizontally()`  
 This method starts where `collapseHorizontally()` leaves off. Because there is no built in method to trim arrays, let alone 2D arrays, we built one!  It simply makes a new 2D array of a size specified by `collapseHorizontally()`, copies the old array into the new one and returns it.   
+
+![HorizontalCollapse](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-1-claudearabo/blob/MakeMarkdownDocumentation/Documentation/Graphics/HorizontalCorrected.png)  
+
 
 ##Step 3: Vertically Collapse the Array  
 Vertically collapsing the array is much easier than collapsing it horizontally. We still use two steps to do this process.
