@@ -3,7 +3,7 @@
 ![Claude Arabo](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-1-claudearabo/blob/MakeMarkdownDocumentation/Documentation/Graphics/claude-arabo.jpg)
 
 ##We are Claude Arabo  
-Claude Arabo was a visionary french fencer who won silver in the 1964 Summer Olympics. You can learn more about Claude Arabo [here](https://fr.wikipedia.org/wiki/Claude_Arabo). 
+Claude Arabo was a visionary french fencer who won silver in the 1964 Summer Olympics. You can learn more about Claude [here](https://fr.wikipedia.org/wiki/Claude_Arabo). 
 Our team members are: 
 * Luz Lopez  
 * Leonid Scott 
@@ -11,15 +11,15 @@ Our team members are:
 * Nathan Beneke 
 
 ##Stories  
-###Parse Excel (5 Jellybeans) 
+####Parse Excel (5 Jellybeans) 
 Parse Excel from an `.xlsx` file into our database.  
-###Generate Webpages (9 Jellybeans)
+####Generate Webpages (9 Jellybeans)
 Being able to load on  the webpage, being able to grab information and drop on page.  
-###Generate QR Codes **Flexible** (3 Jellybeans)  
+####Generate QR Codes **Flexible** (3 Jellybeans)  
 Generate unique URL's and find a tool that allows us to automatically generate, label, and store QR Codes. 
 
 ##Team Velocity
-* Average Team Velocity(Magnitude): **14 Jellybeans**    
+* Average Team Velocity(Magnitude): **14 Jellybeans per week**    
 
 ##Documentation
 * [Excel File Requirements](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-1-claudearabo/blob/MakeMarkdownDocumentation/Documentation/ExcelFileRequirements.md)  
