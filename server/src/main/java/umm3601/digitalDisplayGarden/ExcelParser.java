@@ -20,17 +20,24 @@ import org.bson.Document;
 
 public class ExcelParser {
     public static String FILE_NAME = "/home/Dogxx000/IdeaProjects/digital-display-garden-iteration-1-claudearabo/server/src/main/java/umm3601/digitalDisplayGarden/AccessionList2016.xlsx";
+    //                                ^ This is the file from the shared google drive folder including bed numbers
 
     public static void main(String[] args) {
         parseExel();
     }
 
+    //This constructor was implemented to make testing easier, it may be a good idea to change this constructor to take
+    //a String representation of a file path rather than a boolean.
     public ExcelParser(boolean testing){
         if (testing){
             FILE_NAME = "/home/benek020/Downloads/IDPH_STD_Illinois_By_County_By_Sex.xlsx";
+            //           ^ this file belong to Luz Lopez, and she has some form of rights over it
         }
     }
 
+    //This method parses an excel file that has format given in /Documentation/ExcelFileRequirements.md, and places
+    //the data from that file into the plant collection in the test database (uses MongoDB). Note that any previous data
+    //in the plant collection will be lost, and that if no plant collection or test database exists it will create one
     public static void parseExel() {
 
         String[][] arrayRepresentation = extractFromXLSX();
@@ -167,6 +174,7 @@ public class ExcelParser {
             }
         }
 
+        //To conform with the Standards Committee, and to remove characters that break Mongo
         for (int i = 0; i < keys.length; i++){
             if(keys[i].equals("#")) keys[i] = "id";
             if(keys[i].equals("Common Name")) keys[i] = "commonName";
@@ -188,10 +196,11 @@ public class ExcelParser {
         MongoClient mongoClient = new MongoClient();
         MongoDatabase test = mongoClient.getDatabase("test");
         MongoCollection plants = test.getCollection("plants");
-        plants.drop();
+        plants.drop(); //This line insures that nothing can interfere with our database
 
         String[] keys = getKeys(cellValues);
 
+        //Starts at 4 because above 4 is the keys and the title row
         for (int i = 4; i < cellValues.length; i++){
             Map<String, String> map = new HashMap<String, String>();
             for(int j = 0; j < cellValues[i].length; j++){
