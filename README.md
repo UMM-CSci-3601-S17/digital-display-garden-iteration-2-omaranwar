@@ -1,43 +1,23 @@
-## UMM CSci Production Template
-#### Based on Lab #4
+#Claude Arabo 🇫🇷 🥈 🤺
 
-This is a modification of Lab #4 which includes a slightly different
-gradle configuration
+![Claude Arabo](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-1-claudearabo/blob/MakeMarkdownDocumentation/Documentation/Graphics/claude-arabo.jpg)
 
-## Setup
+##We are Claude Arabo  
+Claude Arabo was a visionary french fencer who won silver in the 1964 Summer Olympics. You can learn more about Claude Arabo [here](https://fr.wikipedia.org/wiki/Claude_Arabo). 
+Our team members are: 
+* Luz Lopez  
+* Leonid Scott 
+* Brittney Ferrian
+* Nathan Beneke 
 
-Cloning the project inside IntelliJ:
-
-- When prompted to create a new IntelliJ project, select **yes**.
-- Select **import project from existing model** and select **Gradle.**
-  - Make sure **Use default Gradle wrapper** is selected.
-- Click **Finish.**
-
-:bangbang: :fire: If IntelliJ ever prompts you to compile typescript files into
-javascript **say no!**. Doing this will confuse webpack and break the client
-side of your project during build. No permanent damage will be done, but it's
-pretty annoying to deal with.
+##Documentation
+* [Excel File Requirements](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-1-claudearabo/blob/MakeMarkdownDocumentation/Documentation/ExcelFileRequirements.md)  
+* [Excel Parser Documentation](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-1-claudearabo/blob/MakeMarkdownDocumentation/Documentation/ExcelParser.md) 
 
 ## Running your project
-
-> ToDo: Write this section
+1. Run the server  
+2. Run the client  
 
 ## Testing and Continuous Integration
 
 Turn on your repo in [Travis CI][travis], replace the build status image in this README, and push your changes. That will trigger a build with Travis.
-
-## Resources
-
-- [Bootstrap Components][bootstrap]
-- [Mongo's Java Drivers (Mongo JDBC)][mongo-jdbc]
-- [What _is_ Angular 2... why TypeScript?][angular-2]
-- [What _is_ webpack...?][whats-webpack]
-- [Testing Angular 2 with Karma/Jasmine][angular2-karma-jasmine]
-
-[angular-2]: https://www.infoq.com/articles/Angular2-TypeScript-High-Level-Overview
-[angular2-karma-jasmine]: http://twofuckingdevelopers.com/2016/01/testing-angular-2-with-karma-and-jasmine/
-[labtasks]: LABTASKS.md
-[travis]: https://travis-ci.org/
-[whats-webpack]: https://webpack.github.io/docs/what-is-webpack.html
-[bootstrap]: https://getbootstrap.com/components/ 
-[mongo-jdbc]: https://docs.mongodb.com/ecosystem/drivers/java/ 
