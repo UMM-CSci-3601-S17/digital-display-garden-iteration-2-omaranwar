@@ -1,5 +1,5 @@
 #ExcelParser.java  
-`ExcelParser` takes a non-deterministic approach to parsing `.xlsx` files. It allows the customer to not only submit an `.xslx` file which they would prefer, but they can insert, delete, and rearange their content in any way they would like and get a reliably populated database. Here is a page explaining what `ExcelParser` needs from an `.xlsx` file to populate the database. 
+`ExcelParser` takes a non-deterministic approach to parsing `.xlsx` files. It allows the customer to not only submit an `.xslx` file which they would prefer, but they can insert, delete, and rearange their content in any with a vast degree of feedom and get a reliably populated database. Here is a page explaining what `ExcelParser` needs from an `.xlsx` file to populate the database. 
 
 This java class is responsible for converting from an excel file (`.xlsx`),
 to our mongo database. This documentation was prepared to walk through how and why we implemented this class the way we did.    
