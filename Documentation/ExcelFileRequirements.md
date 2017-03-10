@@ -17,3 +17,8 @@ None of the information from the first row will be read into our system.
 
 ###First Column
 One of few assumptions we make about the format of the spreadsheet is that the first column has a value for every row in the spreadsheet. Beyond that the actual contents of the first row does not affect how the file will be parsed.
+
+###Text Styling 
+The tools we are using to read in the Excel file do not give our code information about text styling. For this reason, we can not change how our system parses based on text styling. 
+
+**Beyond that, the spreedsheet is yours!!!** 
