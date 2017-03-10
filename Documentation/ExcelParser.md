@@ -1,12 +1,17 @@
 #ExcelParser.java  
+`ExcelParser` takes a non-deterministic approach to parsing `.xlsx` files. It allows the customer to not only submit an `.xslx` file which they would prefer, but they can insert, delete, and rearange their content in any way they would like and get a reliably populated database. Here is a page explaining what `ExcelParser` needs from an `.xlsx` file to populate the database. 
+
 This java class is responsible for converting from an excel file (`.xlsx`),
-to our mongo database. This documentation was prepared to walk through how and why we implemented this class the way we did.   
+to our mongo database. This documentation was prepared to walk through how and why we implemented this class the way we did.    
 
-##Why this parser is good  
+###Setup: 
+In order to use this parser, you will need to setup **Apachi POI** with your project. To do this, you will need edit your server level `build.gradle` file. First, add this line into your `dependencies` collection. 
 
-##Apache POI
+```gradle
+compile 'org.apache.poi:poi-ooxml:3.15'
+```
+You will then need to refresh gradle. In **IntelliJ IDEA**, you can go to the *gradle window* and in the top left, press the blue refresh button, and **BAM YOU WIN**. 
 
-##Setup: 
 In our constructor we pass in a boolean, `test`. 
 This boolean will change the excel file to our test spreadsheet and populate the database so our excelParser tests know what the outputs should be. 
 
