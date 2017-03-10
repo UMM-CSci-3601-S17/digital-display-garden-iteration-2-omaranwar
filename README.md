@@ -15,8 +15,8 @@ Our team members are:
 * [Excel Parser Documentation](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-1-claudearabo/blob/MakeMarkdownDocumentation/Documentation/ExcelParser.md) 
 
 ## Running your project
-1. Run the server  
-2. Run the client  
+> Run the server  
+> Run the client  
 
 ## Testing and Continuous Integration
 
