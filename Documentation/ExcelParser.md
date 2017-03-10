@@ -48,3 +48,8 @@ We make a new 2D array as tall as `collapseVertically()` specifies and copy the 
 ![VerticalCollapse](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-1-claudearabo/blob/MakeMarkdownDocumentation/Documentation/Graphics/VerticalCorrected.png)  
 
 
+##Step 4: Replace Nulls with Empty Strings: `replaceNulls()`  
+The method simply iterates through our 2D array and replaces all nulls with empty strings.
+This prevents any null pointer exceptions in the future. 
+
+![ReplaceNulls](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-1-claudearabo/blob/MakeMarkdownDocumentation/Documentation/Graphics/ReplaceNulls.png)
