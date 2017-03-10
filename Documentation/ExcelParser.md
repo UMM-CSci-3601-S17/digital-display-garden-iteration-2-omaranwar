@@ -53,3 +53,24 @@ The method simply iterates through our 2D array and replaces all nulls with empt
 This prevents any null pointer exceptions in the future. 
 
 ![ReplaceNulls](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-1-claudearabo/blob/MakeMarkdownDocumentation/Documentation/Graphics/ReplaceNulls.png)
+
+##Step 5: Using *Key Rows* to generate Keys for Mongo Collections  
+To do this, we use the `getKeys()` method. This method accomplishes two things:  
+1. It dynamically makes a `String[]` of keys.  
+2. It filters the keys to match terms defined by the standards commite (eg, # becomes `id`) and not break things. 
+
+In order to make a `String[]` of keys, we iterate, column by column, through our key rows. For every column, we concatenate all the strings from each cell. In the table below, the key for that column would be `Common Name`, in the following table, the key would be `HB=Hang BasketC=ContainerW=Wall`.  
+
+|Common Name|
+|:---------:|
+|    ""     |
+|    ""     |
+
+|HB=Hang Basket|
+|:-------------|
+|C=Container   |
+|W=Wall        |  
+
+`HB=Hang BasketC=ContainerW=Wall` is not a great for users or programmers alike.
+There are some points in our project where passing this around can break things. For this reason we filter the keys. 
+We remove spaces, and equal signs. This is also a good oportunity to make our keys match what is specified by the standards committee. We change keys like `#` to `id`, and `Common Name` to `commonName`. 
