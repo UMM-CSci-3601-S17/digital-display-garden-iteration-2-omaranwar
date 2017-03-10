@@ -10,6 +10,17 @@ Our team members are:
 * Brittney Ferrian
 * Nathan Beneke 
 
+##Stories  
+###Parse Excel (5 Jellybeans) 
+Parse Excel from an `.xlsx` file into our database.  
+###Generate Webpages (9 Jellybeans)
+Being able to load on  the webpage, being able to grab information and drop on page.  
+###Generate QR Codes **Flexible** (3 Jellybeans)  
+Generate unique URL's and find a tool that allows us to automatically generate, label, and store QR Codes. 
+
+##Team Velocity
+* Average Team Velocity(Magnitude): **14 Jellybeans**    
+
 ##Documentation
 * [Excel File Requirements](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-1-claudearabo/blob/MakeMarkdownDocumentation/Documentation/ExcelFileRequirements.md)  
 * [Excel Parser Documentation](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-1-claudearabo/blob/MakeMarkdownDocumentation/Documentation/ExcelParser.md) 
