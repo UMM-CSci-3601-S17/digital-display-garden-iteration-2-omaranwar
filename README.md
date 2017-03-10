@@ -32,3 +32,5 @@ Generate unique URL's and find a tool that allows us to automatically generate, 
 ## Testing and Continuous Integration
 
 Turn on your repo in [Travis CI][travis], replace the build status image in this README, and push your changes. That will trigger a build with Travis.
+
+[travis]: https://travis-ci.org/
