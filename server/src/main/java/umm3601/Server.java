@@ -36,7 +36,7 @@ public class Server {
 
         // Redirects for the "home" page
         redirect.get("", "/");
-        redirect.get("/", "http://localhost:9000");
+        redirect.get("/", "http://bistromath.morris.umn.edu:9000");
 
         // List users
         get("api/users", (req, res) -> {
