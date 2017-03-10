@@ -10,6 +10,10 @@ We allow any spreadsheet provided it contains these properties.
 ![ExampleSpreadSheet](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-1-claudearabo/blob/MakeMarkdownDocumentation/Documentation/Graphics/SpreadSheetRequirements.png)
 
 ###Key Row  
-Our system does not search for certain keys, instead it will add any key with its values into our database. The red box in the figue above describes a region of the spreadsheet we refer to as the *key rows*. These are rows 2 through 4. Any words in this text will be interpreted as a key, you have words on one line or all three, and our system will add these to the database all the same.
-* Our system will combine any text of a column together. For example, the column that includes *Common Name* will be interpreted as Common name. But the column containing S=VEG will be interpreted as *S=SeedV=Veg*
+Our system does not search for certain keys(categories), instead, it will add every category and its values into our database. The red box in the figue above describes a region of the spreadsheet we refer to as the *key rows*. These are rows *2* through *4* in the spreadsheet. Any text in this text will be interpreted as a category, there can be text in one row in a column or in all three. For our code to parse your file correctly, it will need to have all of the categories, in some form, on these rows. Our system, does not, however, have a limit on how many categories there can be. 
 
+###First Row
+None of the information from the first row will be read into our system. 
+
+###First Column
+One of few assumptions we make about the format of the spreadsheet is that the first column has a value for every row in the spreadsheet. Beyond that the actual contents of the first row does not affect how the file will be parsed.
