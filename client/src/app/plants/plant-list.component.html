@@ -1,57 +1,56 @@
-<dialog-component></dialog-component>
 <style>
-    .vertical-menu {
-        width: 200px;
+    <!--.vertical-menu {-->
+        <!--width: 200px;-->
+    <!--}-->
+
+    <!--.vertical-menu a {-->
+        <!--background-color: #eee;-->
+        <!--color: black;-->
+        <!--display: block;-->
+        <!--padding: 12px;-->
+        <!--text-decoration: none;-->
+    <!--}-->
+
+    <!--.vertical-menu a:hover {-->
+        <!--background-color: #ccc;-->
+    <!--}-->
+
+    <!--.vertical-menu a.active {-->
+        <!--background-color: #4CAF50;-->
+        <!--color: white;-->
+    <!--}-->
+
+    .thing {
+        position: relative;
+    }
+    .thing2 {
+        top: 0.5em;
     }
 
-    .vertical-menu a {
-        background-color: #eee;
-        color: black;
-        display: block;
-        padding: 12px;
-        text-decoration: none;
+    .btn .glyphicon {
+        margin-right: 8px;
     }
 
-    .vertical-menu a:hover {
-        background-color: #ccc;
-    }
-
-    .vertical-menu a.active {
-        background-color: #4CAF50;
-        color: white;
+    .btn.btn-icon .glyphicon {
+        margin-right: 0;
     }
 </style>
 
-<h1>Digital Display Garden </h1>
+<h3>Digital Display Garden </h3>
 
-<ul class="list-group">
+<div class="thing">
+<button color="blue" style="height:30px;width:200px" aria-describedby="sizing-addon1">
+    <div align="left">
+        <!--<span class="glyphicon glyphicon-phone">-->
+            AngelFace Pretty Pink
+        <!--</span>-->
+    </div>
+</button>
+<button class="thing2" style="height:30px;width:30px" aria-describedby="sizing-addon1">
+    <span class="glyphicon glyphicon-thumbs-up"></span>&zwnj;
+</button>
+<button class="thing2" style="height:30px;width:30px" aria-describedby="sizing-addon1">
+    <span class="glyphicon glyphicon-thumbs-down"></span>&zwnj;
+</button>
+</div>
 
-    <select id="locationDropdown" (change)="populateFlowers()">
-        <option value="">Select Bed</option>
-        <option *ngFor="let location of locations" value="{{location._id}}">{{location._id}}</option>
-    </select>
-
-    <li class="list-group-item list-group-item-info">
-        <span >Plants</span>
-    </li>
-
-    <li *ngFor="let plant of plants | filterBy: {commonName: searchCommonName} " class="list-group-item">
-
-        <button (click)="showDialog = !showDialog" class="btn btn-link btn-block" >
-            {{"Common Name: " + plant.commonName}} <br>
-            {{"Cultivar: " +  plant.cultivar}} <br>
-            {{"Garden Location: " + plant.gardenLocation}}</button>
-        <dialog-component  [(visible)]="showDialog">
-        <h1>{{plant.cultivar}} (This is the last flower in the list)</h1>
-        <h2>{{plant.commonName}}<br>Garden Location: {{plant.gardenLocation}}</h2>
-        <button name = {{plant.cultivar}} (click)="showDialog = !showDialog" class="btn">Close</button>
-    </dialog-component>
-    </li>
-<!--when the following dialog box is included into the above link, the last flower is shown!-->
-
-
-
-
-
-
-</ul>
