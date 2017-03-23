@@ -19,7 +19,8 @@ import { PipeModule } from './pipe.module';
         JsonpModule,
         routing,
         FormsModule,
-        PipeModule
+        PipeModule,
+        DragScrollModule
     ],
     declarations: [
         AppComponent,

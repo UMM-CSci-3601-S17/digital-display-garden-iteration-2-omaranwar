@@ -1,57 +1,88 @@
-<dialog-component></dialog-component>
-<style>
-    .vertical-menu {
-        width: 200px;
-    }
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+        }
 
-    .vertical-menu a {
-        background-color: #eee;
-        color: black;
-        display: block;
-        padding: 12px;
-        text-decoration: none;
-    }
+        #bed_list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 10%;
+            background-color: #f1f1f1;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+        }
 
-    .vertical-menu a:hover {
-        background-color: #ccc;
-    }
+        li a {
+            font-size: 250%;
+            display: block;
+            color: #000;
+            padding: 8px 16px;
+            text-decoration: none;
+            width: 65%;
+            /*text-align: center;*/
+        }
 
-    .vertical-menu a.active {
-        background-color: #4CAF50;
-        color: white;
-    }
-</style>
+        li a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
 
-<h1>Digital Display Garden </h1>
+        li a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
 
-<ul class="list-group">
+        #bed_numbers{
+            overflow: hidden;
+            overflow-y:scroll;
+        }
 
-    <select id="locationDropdown" (change)="populateFlowers()">
-        <option value="">Select Bed</option>
-        <option *ngFor="let location of locations" value="{{location._id}}">{{location._id}}</option>
-    </select>
+    </style>
+</head>
+<body>
 
-    <li class="list-group-item list-group-item-info">
-        <span >Plants</span>
-    </li>
+<div id="bed_numbers">
+    <ul id="bed_list">
+        <li><a class="active">Bed</a></li>
+        <li><a>1</a></li>
+        <li><a>2</a></li>
+        <li><a>3</a></li>
+        <li><a>4</a></li>
+        <li><a>5</a></li>
+        <li><a>6</a></li>
+        <li><a>7</a></li>
+        <li><a>8</a></li>
+        <li><a>9</a></li>
+        <li><a>10</a></li>
+        <li><a>11</a></li>
+        <li><a>12</a></li>
+        <li><a>13</a></li>
+    </ul>
+</div>
 
-    <li *ngFor="let plant of plants | filterBy: {commonName: searchCommonName} " class="list-group-item">
+<div style="margin-left:10%;padding:1px 16px;height:1000px;">
+    <ul>
+        <li><a>Plant 1</a></li>
+        <li><a>Plant 2</a></li>
+        <li><a>Plant 3</a></li>
+        <li><a>Plant 4</a></li>
+        <li><a>Plant 5</a></li>
+        <li><a>Plant 6</a></li>
+        <li><a>Plant 7</a></li>
+        <li><a>Plant 8</a></li>
+        <li><a>Plant 9</a></li>
+        <li><a>Plant 10</a></li>
+        <li><a>Plant 11</a></li>
+        <li><a>Plant 12</a></li>
+        <li><a>Plant 13</a></li>
+    </ul>
+</div>
 
-        <button (click)="showDialog = !showDialog" class="btn btn-link btn-block" >
-            {{"Common Name: " + plant.commonName}} <br>
-            {{"Cultivar: " +  plant.cultivar}} <br>
-            {{"Garden Location: " + plant.gardenLocation}}</button>
-        <dialog-component  [(visible)]="showDialog">
-        <h1>{{plant.cultivar}} (This is the last flower in the list)</h1>
-        <h2>{{plant.commonName}}<br>Garden Location: {{plant.gardenLocation}}</h2>
-        <button name = {{plant.cultivar}} (click)="showDialog = !showDialog" class="btn">Close</button>
-    </dialog-component>
-    </li>
-<!--when the following dialog box is included into the above link, the last flower is shown!-->
 
-
-
-
-
-
-</ul>
+</body>
+</html>
