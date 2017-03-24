@@ -9,7 +9,7 @@
         }
 
         /* ID References */
-        #bed-numbers-list {
+        #bed-list {
             list-style-type: none;
             margin: 0;
             padding: 0;
@@ -20,25 +20,40 @@
             overflow: hidden;
             overflow-y: scroll;
         }
-        #bed-numbers-navbar{
+        #bed-list-view{
             display: inline-block;
             position: absolute;
-            right: 20%;
+            right: 25%;
             overflow: hidden;
+        }
+        #plants-list{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 70%;
+            background-color: #f1f1f1;
+            position: fixed;
+            height: 100%;
+            overflow: hidden;
+            overflow-y: scroll;
         }
 
         /* Class References */
         .bed-number {
-            font-size: 500%;
+            font-size: 200%;
             color: #000;
         }
         .plant{
-            font-size: 500%;
+            /*font-size: 100%;*/
             color: #000;
-            padding: 16px 16px 16px 16px;
+            /*padding: 16px 16px 16px 16px;*/
         }
 
         /* Global References */
+        li {
+            font-size: 100%;
+        }
+
         li a {
             display: block;
             text-decoration: none;
@@ -47,11 +62,29 @@
             text-align: center;
         }
         li a.active {
-            font-size: 500%;
+            /*font-size: 100%;*/
+            background-color: #4CAF50;
+            color: white;
+
+        }
+        li a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
+
+        li b {
+            display: block;
+            text-decoration: none;
+            padding: 32px 0px 32px 0px;
+            width: 100%;
+            text-align: center;
+        }
+        li b.active {
+            /*font-size: 100%;*/
             background-color: #4CAF50;
             color: white;
         }
-        li a:hover:not(.active) {
+        li b:hover:not(.active) {
             background-color: #555;
             color: white;
         }
@@ -59,10 +92,11 @@
 </head>
 <body>
 
-<div id="bed-numbers-navbar">
-    <ul id="bed-numbers-list">
+
+<div id="bed-list-view">
+    <ul id="bed-list">
         <li><a class="active">Bed</a></li>
-        <li class="bed-number"><a>1</a></li>
+        <li (click) = "handleClick(13)" class="bed-number"><a>1</a></li>
         <li class="bed-number"><a>2</a></li>
         <li class="bed-number"><a>3</a></li>
         <li class="bed-number"><a>4</a></li>
@@ -78,45 +112,12 @@
     </ul>
 </div>
 
-<div id="plants">
-    <ul id="plants-list">
-        <li class="plant"><a>Plant 1</a></li>
-        <li class="plant"><a>Plant 2</a></li>
-        <li class="plant"><a>Plant 3</a></li>
-        <li class="plant"><a>Plant 4</a></li>
-        <li class="plant"><a>Plant 5</a></li>
-        <li class="plant"><a>Plant 6</a></li>
-        <li class="plant"><a>Plant 7</a></li>
-        <li class="plant"><a>Plant 8</a></li>
-        <li class="plant"><a>Plant 9</a></li>
-        <li class="plant"><a>Plant 1</a></li>
-        <li class="plant"><a>Plant 2</a></li>
-        <li class="plant"><a>Plant 3</a></li>
-        <li class="plant"><a>Plant 4</a></li>
-        <li class="plant"><a>Plant 5</a></li>
-        <li class="plant"><a>Plant 6</a></li>
-        <li class="plant"><a>Plant 7</a></li>
-        <li class="plant"><a>Plant 8</a></li>
-        <li class="plant"><a>Plant 9</a></li>
-        <li class="plant"><a>Plant 1</a></li>
-        <li class="plant"><a>Plant 2</a></li>
-        <li class="plant"><a>Plant 3</a></li>
-        <li class="plant"><a>Plant 4</a></li>
-        <li class="plant"><a>Plant 5</a></li>
-        <li class="plant"><a>Plant 6</a></li>
-        <li class="plant"><a>Plant 7</a></li>
-        <li class="plant"><a>Plant 8</a></li>
-        <li class="plant"><a>Plant 9</a></li>
-        <li class="plant"><a>Plant 1</a></li>
-        <li class="plant"><a>Plant 2</a></li>
-        <li class="plant"><a>Plant 3</a></li>
-        <li class="plant"><a>Plant 4</a></li>
-        <li class="plant"><a>Plant 5</a></li>
-        <li class="plant"><a>Plant 6</a></li>
-        <li class="plant"><a>Plant 7</a></li>
-        <li class="plant"><a>Plant 8</a></li>
-        <li class="plant"><a>Plant 9</a></li>
 
+<div id="plants-list-view">
+    <ul id="plants-list">
+        <li *ngFor="let plant of plants">
+            {{ plant.commonName }}
+        </li>
     </ul>
 </div>
 
