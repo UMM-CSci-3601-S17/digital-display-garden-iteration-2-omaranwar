@@ -29,62 +29,62 @@ public class TestExcelParser {
 
 
 
-//    @Test
-//    public void testSpeadsheetToDoubleArray(){
-//        String[][] plantArray = parser.extractFromXLSX();
-//        //printDoubleArray(plantArray);
-//
-//        assertEquals(1668, plantArray.length);
-//        assertEquals(plantArray[40].length, plantArray[1234].length);
-//        assertEquals("ALEXANDER", plantArray[5][2]);
-//
-//    }
+    @Test
+    public void testSpeadsheetToDoubleArray(){
+        String[][] plantArray = parser.extractFromXLSX();
+        //printDoubleArray(plantArray);
 
-//    @Test
-//    public void testCollapse(){
-//        String[][] plantArray = parser.extractFromXLSX();
-//        //System.out.println(plantArray.length);
-//        //printDoubleArray(plantArray);
-//
-//        plantArray = parser.collapseHorizontally(plantArray);
-//        plantArray = parser.collapseVertically(plantArray);
-//
-//        //printDoubleArray(plantArray);
-//
-//        assertEquals(1668, plantArray.length);
-//        assertEquals(10, plantArray[30].length);
-//        assertEquals(10, plantArray[0].length);
-//        assertEquals(10, plantArray[3].length);
-//    }
+        assertEquals(1668, plantArray.length);
+        assertEquals(plantArray[40].length, plantArray[1234].length);
+        assertEquals("ALEXANDER", plantArray[5][2]);
 
-//    @Test
-//    public void testReplaceNulls(){
-//        String[][] plantArray = parser.extractFromXLSX();
-//        plantArray = parser.collapseHorizontally(plantArray);
-//        plantArray = parser.collapseVertically(plantArray);
-//        parser.replaceNulls(plantArray);
-//
-//        for (String[] row : plantArray){
-//            for (String cell : row){
-//                assertNotNull(cell);
-//            }
-//        }
-//    }
+    }
 
-//    @Test
-//    public void testPopulateDatabase(){
-//        String[][] plantArray = parser.extractFromXLSX();
-//        plantArray = parser.collapseHorizontally(plantArray);
-//        plantArray = parser.collapseVertically(plantArray);
-//        parser.replaceNulls(plantArray);
-//
-//        parser.populateDatabase(plantArray);
-//        MongoCollection plants = testDB.getCollection("plants");
-//
-//
-//        assertEquals(1664, plants.count());
-//        assertEquals(16, plants.count(eq("Sort", "104")));
-//    }
+    @Test
+    public void testCollapse(){
+        String[][] plantArray = parser.extractFromXLSX();
+        //System.out.println(plantArray.length);
+        //printDoubleArray(plantArray);
+
+        plantArray = parser.collapseHorizontally(plantArray);
+        plantArray = parser.collapseVertically(plantArray);
+
+        //printDoubleArray(plantArray);
+
+        assertEquals(1668, plantArray.length);
+        assertEquals(10, plantArray[30].length);
+        assertEquals(10, plantArray[0].length);
+        assertEquals(10, plantArray[3].length);
+    }
+
+    @Test
+    public void testReplaceNulls(){
+        String[][] plantArray = parser.extractFromXLSX();
+        plantArray = parser.collapseHorizontally(plantArray);
+        plantArray = parser.collapseVertically(plantArray);
+        parser.replaceNulls(plantArray);
+
+        for (String[] row : plantArray){
+            for (String cell : row){
+                assertNotNull(cell);
+            }
+        }
+    }
+
+    @Test
+    public void testPopulateDatabase(){
+        String[][] plantArray = parser.extractFromXLSX();
+        plantArray = parser.collapseHorizontally(plantArray);
+        plantArray = parser.collapseVertically(plantArray);
+        parser.replaceNulls(plantArray);
+
+        parser.populateDatabase(plantArray);
+        MongoCollection plants = testDB.getCollection("plants");
+
+
+        assertEquals(1664, plants.count());
+        assertEquals(16, plants.count(eq("Sort", "104")));
+    }
 
 
 

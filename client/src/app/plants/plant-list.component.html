@@ -94,28 +94,23 @@
 
 
 <div id="bed-list-view">
-    <ul id="bed-list">
+    <ul id="bed-list" (click)="handleClick($event.target.textContent)">
+
         <li><a class="active">Bed</a></li>
-        <li (click) = "handleClick(13)" class="bed-number"><a>1</a></li>
-        <li class="bed-number"><a>2</a></li>
-        <li class="bed-number"><a>3</a></li>
-        <li class="bed-number"><a>4</a></li>
-        <li class="bed-number"><a>5</a></li>
-        <li class="bed-number"><a>6</a></li>
-        <li class="bed-number"><a>7</a></li>
-        <li class="bed-number"><a>8</a></li>
-        <li class="bed-number"><a>9</a></li>
-        <li class="bed-number"><a>10</a></li>
-        <li class="bed-number"><a>11</a></li>
-        <li class="bed-number"><a>12</a></li>
-        <li class="bed-number"><a>13</a></li>
+
+
+        <li *ngFor="let bed of gardenLocations">
+            <a>{{ bed._id }}</a>
+        </li>
+
     </ul>
 </div>
 
 
+
 <div id="plants-list-view">
     <ul id="plants-list">
-        <li *ngFor="let plant of plants">
+        <li *ngFor="let plant of filteredPlants">
             {{ plant.commonName }}
         </li>
     </ul>

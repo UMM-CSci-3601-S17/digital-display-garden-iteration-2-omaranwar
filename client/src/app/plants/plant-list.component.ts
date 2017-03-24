@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlantListService } from "./plant-list.service";
 import { Plant } from "./plant";
+import { Bed } from "./bed";
 import { FilterBy } from "./filter.pipe";
 
 @Component({
@@ -11,14 +12,17 @@ import { FilterBy } from "./filter.pipe";
 
 export class PlantListComponent implements OnInit {
     public plants: Plant[];
-    public locations: Plant[];
+    public filteredPlants: Plant[] = [];
+    public gardenLocations: Bed[];
+
+    private static readonly ALL_PLANTS: string = "Bed";
 
     // Don't filter if already filtered
     public currentBedFilter;
 
     constructor(private plantListService: PlantListService) {
         // this.plants = this.plantListService.getPlants();
-        //this.locations = this.plants;
+        //this.filteredPlants = this.plants;
     }
 
     public getSelectedBed(): string{
@@ -37,36 +41,37 @@ export class PlantListComponent implements OnInit {
         //     }
         // );
     }
-    public handleClick(bedNumber): void{
-        console.log("Checking Bed number " + bedNumber );
+    public handleClick(bedName): void{
+        console.log("Checking Bed number " + bedName );
 
-        // if(this.currentBedFilter != bedNumber) {
-        //     this.currentBedFilter = bedNumber;
-        //     this.filterByBedNumber(bedNumber);
-        // }
+        if(this.currentBedFilter != bedName) {
+
+            if(bedName === PlantListComponent.ALL_PLANTS){
+                console.log("All Plants");
+                this.filteredPlants = this.plants;
+            } else{
+                console.log("Filter Plants");
+                this.currentBedFilter = bedName;
+                this.filterByBedNumber(bedName);
+            }
+        }
     }
 
-    public filterByBedNumber(bedNumber: string): void{
+    public filterByBedNumber(bedName: string): void{
 
-        // if("13" == bedNumber)
-        //     console.log("String 13 === " + bedNumber);
-        //
-        // if(13 === bedNumber)
-        //     console.log("Value 13 === " + bedNumber);
-
-        console.log("Bed number " + bedNumber );
+        this.filteredPlants = [];
 
         this.plants.forEach((plant, index) => {
-            console.log("Checking: " + plant.gardenLocation + " === " + bedNumber);
-           if(plant.gardenLocation == bedNumber) {
+            // console.log("Checking " + plant.commonName + ": " + plant.gardenLocation + " === " + bedName);
+           if(plant.gardenLocation == bedName) {
                console.log("Added " + plant.commonName + " to [" + index + "]");
-               this.locations[index] = new Plant(plant.commonName);
+               this.filteredPlants.push(plant);
            }
         });
 
-        // this.locations.forEach((plant, index) => {
-        //     console.log(plant.commonName + " " + plant.cultivar);
-        // });
+        this.filteredPlants.forEach((plant, index) => {
+            console.log(plant.commonName + " " + plant.cultivar);
+        });
     }
 
     ngOnInit(): void {
@@ -77,11 +82,12 @@ export class PlantListComponent implements OnInit {
             }
         );
 
-        // this.plantListService.getGardenLocations().subscribe(
-        //     locations => this.locations = locations,
-        //     err => {
-        //         console.log(err);
-        //     }
-        // );
+
+        this.plantListService.getGardenLocations().subscribe(
+            gardenLocations => this.gardenLocations = gardenLocations,
+            err => {
+                console.log(err);
+            }
+        );
     }
 }

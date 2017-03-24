@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Plant } from './plant';
+import { Bed } from "./bed";
 import { Observable } from "rxjs";
 
 @Injectable()
@@ -16,7 +17,7 @@ export class PlantListService {
         return this.http.request(this.plantUrl + "/" + id).map(res => res.json());
     }
 
-    getGardenLocations(): Observable<Plant[]> {
+    getGardenLocations(): Observable<Bed[]> {
         return this.http.request(API_URL + "/gardenLocations").map(res => res.json());
     }
     getFlowersByFilter(filterUrl: string): Observable<Plant[]> {
