@@ -6,10 +6,7 @@ import com.mongodb.client.MongoDatabase;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import static java.lang.Math.max;
@@ -19,19 +16,23 @@ import org.bson.Document;
 //import sun.text.normalizer.UTF16;
 
 public class ExcelParser {
-    public static String FILE_NAME = "/home/Dogxx000/IdeaProjects/digital-display-garden-iteration-1-claudearabo/server/src/main/java/umm3601/digitalDisplayGarden/AccessionList2016.xlsx";
+
+   // public static String FILE_NAME = "/home/Dogxx000/IdeaProjects/digital-display-garden-iteration-1-claudearabo/server/src/main/java/umm3601/digitalDisplayGarden/AccessionList2016.xlsx";
+   //public static String FILE_NAME = new File("server/src/main/java/umm3601/digitalDisplayGarden/AccessionList2016.xlsx").getAbsolutePath();
+   public static String FILE_NAME = "/AccessionList2016.xlsx";
 
     public static void main(String[] args) {
-        parseExel();
+        parseExcel();
     }
+
 
     public ExcelParser(boolean testing){
         if (testing){
-            FILE_NAME = "/home/benek020/Downloads/IDPH_STD_Illinois_By_County_By_Sex.xlsx";
+            FILE_NAME = "/IDPH_STD_Illinois_By_County_By_Sex.xlsx";
         }
     }
 
-    public static void parseExel() {
+    public static void parseExcel() {
 
         String[][] arrayRepresentation = extractFromXLSX();
 
@@ -52,7 +53,8 @@ public class ExcelParser {
      */
     public static String[][] extractFromXLSX() {
         try {
-            FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
+            Object objectO = new Object();
+            InputStream excelFile = objectO.getClass().getResourceAsStream(FILE_NAME);
 
             Workbook workbook = new XSSFWorkbook(excelFile);
             Sheet datatypeSheet = workbook.getSheetAt(0);
