@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Plant } from './plant';
-import { Bed } from "./bed";
+import { Bed } from "../../bed_list/src/bed";
 import { Observable } from "rxjs";
 
 @Injectable()
@@ -20,6 +20,7 @@ export class PlantListService {
     getGardenLocations(): Observable<Bed[]> {
         return this.http.request(API_URL + "/gardenLocations").map(res => res.json());
     }
+
     getFlowersByFilter(filterUrl: string): Observable<Plant[]> {
         return this.http.request(this.plantUrl + filterUrl).map(res => res.json());
     }

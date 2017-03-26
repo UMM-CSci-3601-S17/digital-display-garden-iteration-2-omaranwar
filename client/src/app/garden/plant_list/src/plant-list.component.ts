@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PlantListService } from "./plant-list.service";
 import { Plant } from "./plant";
-import { Bed } from "./bed";
-import { FilterBy } from "./filter.pipe";
+import { Bed } from "../../bed_list/src/bed";
+import { FilterBy } from "../../filter.pipe";
 
 @Component({
     selector: 'plant-list-component',
@@ -11,9 +11,13 @@ import { FilterBy } from "./filter.pipe";
 })
 
 export class PlantListComponent implements OnInit {
-    public plants: Plant[];
-    public filteredPlants: Plant[] = [];
-    public gardenLocations: Bed[];
+    private allPlants: Plant[];
+
+    private filteredPlants: Plant[] = [];
+
+    private gardenLocations: Bed[];
+
+
 
     private static readonly ALL_PLANTS: string = "Bed";
 
@@ -41,6 +45,7 @@ export class PlantListComponent implements OnInit {
         //     }
         // );
     }
+
     public handleClick(bedName): void{
         console.log("Checking Bed number " + bedName );
 
@@ -48,7 +53,7 @@ export class PlantListComponent implements OnInit {
 
             if(bedName === PlantListComponent.ALL_PLANTS){
                 console.log("All Plants");
-                this.filteredPlants = this.plants;
+                this.filteredPlants = this.allPlants;
             } else{
                 console.log("Filter Plants");
                 this.currentBedFilter = bedName;
@@ -57,26 +62,23 @@ export class PlantListComponent implements OnInit {
         }
     }
 
+    /**
+     * Filters the Plant List by a bed name within the Bed list.
+     * @param bedName - the name of the bed to filter by
+     */
     public filterByBedNumber(bedName: string): void{
 
         this.filteredPlants = [];
 
-        this.plants.forEach((plant, index) => {
-            // console.log("Checking " + plant.commonName + ": " + plant.gardenLocation + " === " + bedName);
-           if(plant.gardenLocation == bedName) {
-               console.log("Added " + plant.commonName + " to [" + index + "]");
+        this.allPlants.forEach((plant, index) => {
+           if(plant.gardenLocation == bedName)
                this.filteredPlants.push(plant);
-           }
-        });
-
-        this.filteredPlants.forEach((plant, index) => {
-            console.log(plant.commonName + " " + plant.cultivar);
         });
     }
 
     ngOnInit(): void {
         this.plantListService.getPlants().subscribe(
-            plants => this.plants = plants,
+            plants => this.allPlants = plants,
             err => {
                 console.log(err);
             }

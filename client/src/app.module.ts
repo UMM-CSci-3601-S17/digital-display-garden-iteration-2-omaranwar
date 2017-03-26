@@ -4,13 +4,14 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { AppComponent }         from './app/app.component';
 import { NavbarComponent } from './app/navbar/navbar.component';
 import { HomeComponent} from './app/home/home.component';
-import { PlantListComponent } from './app/plants/plant-list.component';
-import { PlantListService } from './app/plants/plant-list.service';
+import { PlantListComponent } from './app/garden/plant_list/src/plant-list.component';
+import { PlantListService } from './app/garden/plant_list/src/plant-list.service';
 import { DialogComponent} from './app/dialog/dialog.component';
 import { routing } from './app/app.routes';
 import { FormsModule } from '@angular/forms';
 
 import { PipeModule } from './pipe.module';
+import {PlantComponent} from "./app/garden/plant_list/src/plant.component";
 
 @NgModule({
     imports: [
