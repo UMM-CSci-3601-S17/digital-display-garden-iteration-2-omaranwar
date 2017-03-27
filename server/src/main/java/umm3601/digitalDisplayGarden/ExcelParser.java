@@ -184,6 +184,15 @@ public class ExcelParser {
         return keys;
     }
 
+    public static boolean emptyBed(String[] keys, String[][] cellValue, int rowNum) {
+        for(int i = 0; i < keys.length; i++) {
+            if(keys[i].equals("gardenLocation") && cellValue[rowNum][i].equals("")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // Moves row by row through the 2D array and adds content for every flower paired with keys into a document
     // Uses the document to one at a time, add flower information into the database.
     public static void populateDatabase(String[][] cellValues){
@@ -195,14 +204,16 @@ public class ExcelParser {
         String[] keys = getKeys(cellValues);
 
         for (int i = 4; i < cellValues.length; i++){
-            Map<String, String> map = new HashMap<String, String>();
-            for(int j = 0; j < cellValues[i].length; j++){
-                map.put(keys[j], cellValues[i][j]);
-            }
+            if(!emptyBed(keys, cellValues, i)) {
+                Map<String, String> map = new HashMap<String, String>();
+                for (int j = 0; j < cellValues[i].length; j++) {
+                    map.put(keys[j], cellValues[i][j]);
+                }
 
-            Document doc = new Document();
-            doc.putAll(map);
-            plants.insertOne(doc);
+                Document doc = new Document();
+                doc.putAll(map);
+                plants.insertOne(doc);
+            }
         }
     }
 
