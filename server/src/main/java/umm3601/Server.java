@@ -69,7 +69,6 @@ public class Server {
         });
 
         // Like a specific plant
-        // todo Should this be POST or PUT or something?
         get("api/plant/:id/like", (req, res) -> {
             res.type("application/json");
             String id = req.params("id");
@@ -77,7 +76,6 @@ public class Server {
         });
 
         // Dislike a specific plant
-        // todo Should this be POST or PUT or something?
         get("api/plant/:id/dislike", (req, res) -> {
             res.type("application/json");
             String id = req.params("id");

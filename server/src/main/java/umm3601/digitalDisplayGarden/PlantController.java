@@ -41,6 +41,7 @@ public class PlantController {
         MongoDatabase db = mongoClient.getDatabase("test");
 
         plantCollection = db.getCollection("plants");
+        commentCollection = db.getCollection("comments");
     }
 
     // List plants
@@ -168,7 +169,6 @@ public class PlantController {
      * @return true iff the comment was successfully submitted
      */
     public boolean storePlantComment(String json) {
-
 
         try {
 

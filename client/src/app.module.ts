@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 
 import { PipeModule } from './pipe.module';
 import {PlantComponent} from "./app/garden/plant_list/src/plant.component";
+import {PlantService} from "./app/garden/plant_list/src/plant.service";
 import {BedListComponent} from "./app/garden/bed_list/src/bed-list.component";
 import {BedListService} from "./app/garden/bed_list/src/bed-list.service";
 import {GardenComponent} from "./app/garden/src/garden-component";
@@ -32,9 +33,10 @@ import {GardenComponent} from "./app/garden/src/garden-component";
         PlantListComponent,
         GardenComponent,
         DialogComponent,
-        BedListComponent
+        BedListComponent,
+        PlantComponent
     ],
-    providers: [ PlantListService, BedListService ],
+    providers: [ PlantListService, BedListService, PlantService ],
     bootstrap: [ AppComponent ]
 })
 
