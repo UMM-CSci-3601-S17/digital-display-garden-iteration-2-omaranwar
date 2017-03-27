@@ -16,7 +16,7 @@ export class BedListService {
      * Requests the list of bed names (garden locations) from the server.
      * @returns {Observable<R>} - the bed name collection from the server
      */
-    public getBedNames(): Observable<Bed[]> {
+    getBedNames(): Observable<Bed[]> {
         return this.http.request(API_URL + "/gardenLocations").map(res => res.json());
     }
 }

@@ -1,3 +1,4 @@
+///<reference path="bed.ts"/>
 /**
  * @author Shawn Saliyev
  * @author Skye Antinozzi
@@ -7,6 +8,7 @@ import {Bed} from "./bed";
 import {BedListService} from "./bed-list.service";
 import {PlantListService} from "../../plant_list/src/plant-list.service";
 import {PlantFilter} from "../../plant_list/src/plantfilter";
+import {PlantListComponent} from "../../plant_list/src/plant-list.component";
 
 @Component({
     selector: 'bed-list',
@@ -22,14 +24,22 @@ export class BedListComponent implements OnInit {
      */
     public readonly BED_LIST_HEADER: string = PlantFilter.FILTER_BY_ALL_PLANTS;
 
-    constructor(private bedListService: BedListService, private plantListService: PlantListService) { }
+    constructor(private bedListService: BedListService) { }
 
     /**
      * Should filter by the provided bed name.
      * @param bedName - the bed name to filter by
      */
     private handleBedListClick(bedName): void{
-        this.plantListService.filterByBedName(bedName);
+        PlantListComponent.getInstance().filterByBedName(bedName);
+    }
+
+    /**
+     * Returns the Beds collection
+     * @returns {Bed[]} The bed collection
+     */
+    public getBedNames(): Bed[]{
+        return this.bedNames;
     }
 
     ngOnInit(): void {

@@ -50,4 +50,17 @@ export class PlantListComponent {
         this.filteredPlants = filteredPlants;
     }
 
+    /**
+     * Gets the filtered plants collection.
+     * Currently implemented for testing.
+     * @returns {Plant[]} - the filtered plants collection
+     */
+    public getFilteredPlants(): Plant[]{
+        return this.filteredPlants;
+    }
+
+    public filterByBedName(bedName: string): void{
+        this.plantListService.filterByBedName(bedName);
+    }
+
 }

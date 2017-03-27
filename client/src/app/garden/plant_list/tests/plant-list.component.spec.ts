@@ -1,82 +1,95 @@
-// import { ComponentFixture, TestBed, async } from "@angular/core/testing";
-// import { User } from "./user";
-// import { UserListComponent } from "./user-list.component";
-// import { UserListService } from "./user-list.service";
-// import { Observable } from "rxjs";
-// import { PipeModule } from "../../pipe.module";
-//
-// describe("User list", () => {
-//
-//     let userList: UserListComponent;
-//     let fixture: ComponentFixture<UserListComponent>;
-//
-//     let userListServiceStub: {
-//         getUsers: () => Observable<User[]>
-//     };
-//
-//     beforeEach(() => {
-//         // stub UserService for test purposes
-//         userListServiceStub = {
-//             getUsers: () => Observable.of([
-//                 {
-//                     id: "chris_id",
-//                     name: "Chris",
-//                     age: 25,
-//                     company: "UMM",
-//                     email: "chris@this.that"
-//                 },
-//                 {
-//                     id: "pat_id",
-//                     name: "Pat",
-//                     age: 37,
-//                     company: "IBM",
-//                     email: "pat@something.com"
-//                 },
-//                 {
-//                     id: "jamie_id",
-//                     name: "Jamie",
-//                     age: 37,
-//                     company: "Frogs, Inc.",
-//                     email: "jamie@frogs.com"
-//                 }
-//                 ])
-//         };
-//
-//         TestBed.configureTestingModule({
-//             imports: [PipeModule],
-//             declarations: [ UserListComponent ],
-//             // providers:    [ UserListService ]  // NO! Don't provide the real service!
-//             // Provide a test-double instead
-//             providers:    [ { provide: UserListService, useValue: userListServiceStub } ]
-//         })
-//     });
-//
-//     beforeEach(async(() => {
-//         TestBed.compileComponents().then(() => {
-//             fixture = TestBed.createComponent(UserListComponent);
-//             userList = fixture.componentInstance;
-//             fixture.detectChanges();
-//         });
-//     }));
-//
-//     it("contains all the users", () => {
-//         expect(userList.users.length).toBe(3);
-//     });
-//
-//     it("contains a user named 'Chris'", () => {
-//         expect(userList.users.some((user: User) => user.name === "Chris" )).toBe(true);
-//     });
-//
-//     it("contain a user named 'Jamie'", () => {
-//         expect(userList.users.some((user: User) => user.name === "Jamie" )).toBe(true);
-//     });
-//
-//     it("doesn't contain a user named 'Santa'", () => {
-//         expect(userList.users.some((user: User) => user.name === "Santa" )).toBe(false);
-//     });
-//
-//     it("has two users that are 37 years old", () => {
-//         expect(userList.users.filter((user: User) => user.age === 37).length).toBe(2);
-//     });
-//
-// });
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { Observable } from "rxjs";
+import {PlantListComponent} from "../src/plant-list.component";
+import {PlantListService} from "../src/plant-list.service";
+import {Plant} from "../src/plant";
+
+describe("Plant list", () => {
+
+    let plantList: PlantListComponent;
+    let fixture: ComponentFixture<PlantListComponent>;
+
+    let plantListServiceStub: {
+        getPlants: () => Observable<Plant[]>
+    };
+
+    beforeEach(() => {
+        // stub UserService for test purposes
+        plantListServiceStub = {
+            getPlants: () => Observable.of([
+                {
+                    id: "1",
+                    plantID: "PlantID1",
+                    plantType: "PlantType1",
+                    commonName: "CommonName1",
+                    cultivar: "Cultivar1",
+                    source: "Source1",
+                    gardenLocation: "BedName1",
+                    year: "Year1",
+                    pageURL: "PageURL1",
+                    plantImageURLs: null,
+                    recognitions: null
+                },
+                {
+                    id: "2",
+                    plantID: "PlantID2,",
+                    plantType: "PlantType2,",
+                    commonName: "CommonName2,",
+                    cultivar: "Cultivar2,",
+                    source: "Source2,",
+                    gardenLocation: "BedName2,",
+                    year: "Year2,",
+                    pageURL: "PageURL2,",
+                    plantImageURLs: null,
+                    recognitions: null
+                },
+                {
+                    id: "3",
+                    plantID: "PlantID3",
+                    plantType: "PlantType3",
+                    commonName: "CommonName3",
+                    cultivar: "Cultivar3",
+                    source: "Source3",
+                    gardenLocation: "BedName3",
+                    year: "Year3",
+                    pageURL: "PageURL3",
+                    plantImageURLs: null,
+                    recognitions: null
+                }
+                ])
+        };
+
+        TestBed.configureTestingModule({
+            declarations: [ PlantListComponent ],
+            providers:    [ { provide: PlantListService, useValue: plantListServiceStub } ]
+        })
+    });
+
+    beforeEach(async(() => {
+        TestBed.compileComponents().then(() => {
+            fixture = TestBed.createComponent(PlantListComponent);
+            plantList = fixture.componentInstance;
+            fixture.detectChanges();
+        });
+    }));
+
+    it("Get Instance of PlantListComponent", () => {
+        let plc: PlantListComponent  = new PlantListComponent(null);
+        expect(PlantListComponent.getInstance() == null).toBe(false);
+    });
+
+    it("Set Filtered Plants", () => {
+
+        let plants: Plant[] = [];
+        plants.push(new Plant("Plant 1", "Bed1"));
+        plants.push(new Plant("Plant 2", "Bed2"));
+        plants.push(new Plant("Plant 3", "Bed3"));
+
+        expect(plants.length).toBe(3);
+
+        plantList.setFilteredPlants(plants);
+
+        expect(plantList.getFilteredPlants().length).toBe(3);
+    });
+
+});

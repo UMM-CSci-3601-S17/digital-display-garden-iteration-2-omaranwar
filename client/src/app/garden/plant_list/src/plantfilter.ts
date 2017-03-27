@@ -25,6 +25,7 @@ export class PlantFilter {
         let filteredPlants: Plant[] = [];
 
         plants.forEach((plant, index) => {
+            console.log("Checking " + plant.gardenLocation + "==" + bedName);
             if (plant.gardenLocation == bedName)
                 filteredPlants.push(plant);
         });

@@ -6,13 +6,15 @@ export class Plant {
     cultivar: string;
     source: string;
     gardenLocation: string;
-    year: number;
+    year: string;
     pageURL: string;
     plantImageURLs: string[];
     recognitions: string[];
 
-    constructor(commonName: string) {
-        this.commonName = commonName;
+    constructor(cultivar: string, bedName: string) {
+        this.cultivar = cultivar;
+        this.gardenLocation = bedName;
     }
+
 }
 
