@@ -1,1 +1,26 @@
-<h1>Hello Plant Component</h1>
+<h1>Plant Component</h1>
+<h3>At the moment, this is copied directly from Rayquaza's</h3>
+
+<p *ngIf="plant == null"> The plant you are looking for does not exist!</p>
+<div *ngIf="plant !== null" class= "text-center" >
+    <br><br>
+    <h3 >{{plant.cultivar}}</h3>
+    <br>
+    <p> Common Name: {{plant.commonName}}</p>
+    <div *ngIf="!rated">
+        <button type="button" (click)="this.rate('like')"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button>
+        <button type="button" (click)="this.rate('dislike')"><span class="glyphicon glyphicon-thumbs-down"></span> Dislike</button>
+    </div>
+    <div *ngIf="rated">
+        Thanks for your feedback!
+    </div>
+    <br>
+    <div *ngIf="!commented">
+        <textarea [(ngModel)]="commentText" rows="5" wrap="on" style="width: 95%;"></textarea>
+
+        <button type="button" (click)="this.comment(commentText)">Leave a comment</button>
+    </div>
+    <div *ngIf="commented">
+        Your comment has been submitted.
+    </div>
+</div>
