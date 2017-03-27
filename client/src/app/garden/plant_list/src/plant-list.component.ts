@@ -5,7 +5,7 @@ import { Bed } from "../../bed_list/src/bed";
 import { FilterBy } from "../../filter.pipe";
 
 @Component({
-    selector: 'plant-list-component',
+    selector: 'plant-list',
     templateUrl: 'plant-list.component.html',
     providers: [ FilterBy ]
 })
@@ -14,10 +14,6 @@ export class PlantListComponent implements OnInit {
     private allPlants: Plant[];
 
     private filteredPlants: Plant[] = [];
-
-    private gardenLocations: Bed[];
-
-
 
     private static readonly ALL_PLANTS: string = "Bed";
 
@@ -31,19 +27,6 @@ export class PlantListComponent implements OnInit {
 
     public getSelectedBed(): string{
         return (<HTMLInputElement>document.getElementById("locationDropdown")).value;
-    }
-
-    public populateFlowers(): void{
-
-        var bed = this.getSelectedBed();
-        var filterUrl = "?gardenLocation=" + bed;
-
-        // this.plantListService.getFlowersByFilter(filterUrl).subscribe (
-        //     plants => this.plants = plants,
-        //     err => {
-        //         console.log(err);
-        //     }
-        // );
     }
 
     public handleClick(bedName): void{
@@ -84,12 +67,5 @@ export class PlantListComponent implements OnInit {
             }
         );
 
-
-        this.plantListService.getGardenLocations().subscribe(
-            gardenLocations => this.gardenLocations = gardenLocations,
-            err => {
-                console.log(err);
-            }
-        );
     }
 }

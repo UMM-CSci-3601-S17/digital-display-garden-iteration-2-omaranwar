@@ -12,6 +12,9 @@ import { FormsModule } from '@angular/forms';
 
 import { PipeModule } from './pipe.module';
 import {PlantComponent} from "./app/garden/plant_list/src/plant.component";
+import {BedListComponent} from "./app/garden/bed_list/src/bed-list.component";
+import {BedListService} from "./app/garden/bed_list/src/bed-list.service";
+import {GardenComponent} from "./app/garden/src/garden-component";
 
 @NgModule({
     imports: [
@@ -27,9 +30,11 @@ import {PlantComponent} from "./app/garden/plant_list/src/plant.component";
         HomeComponent,
         NavbarComponent,
         PlantListComponent,
-        DialogComponent
+        GardenComponent,
+        DialogComponent,
+        BedListComponent
     ],
-    providers: [ PlantListService ],
+    providers: [ PlantListService, BedListService ],
     bootstrap: [ AppComponent ]
 })
 
