@@ -3,107 +3,60 @@
 <head>
     <style>
 
-
+        /*Global References*/
         body {
-            margin: 0;
-            display: inline-block;
+            display: inline;
         }
-
-        /* ID References */
-        #bed-list {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            width: 20%;
-            background-color: #f1f1f1;
-            position: fixed;
-            height: 87%;
-            overflow: hidden;
-            overflow-y: scroll;
-        }
-        #bed-list-view{
-            display: inline-block;
-            position: absolute;
-            right: 25%;
-            /*overflow: hidden;*/
-        }
-        #plants-list{
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            width: 70%;
-            background-color: #f1f1f1;
-            position: fixed;
-            height: 87%;
-            overflow: hidden;
-            overflow-y: scroll;
-        }
-
-        /* Class References */
-        .bed-number {
-            font-size: 200%;
-            color: #000;
-        }
-        .plant{
-            /*font-size: 100%;*/
-            color: #000;
-            /*padding: 16px 16px 16px 16px;*/
-        }
-
-        /* Global References */
-        li {
-            font-size: 100%;
-        }
-
-        li a {
+        a {
+            font-size: 150%;
             display: block;
             text-decoration: none;
             padding: 32px 0px 32px 0px;
-            width: 100%;
             text-align: center;
         }
-        li a.active {
-            /*font-size: 100%;*/
+        a.active {
             padding: 8px 0px 8px 0px;
-            background-color: #4CAF50;
+            background-color: #0375b4;
             color: white;
-            width: 100%;
         }
-        li a:hover:not(.active) {
+        a:hover:not(.active) {
             background-color: #555;
             color: white;
+        }
+
+        /*ID References*/
+        #plant-list{
+            list-style-type: none;
+            padding: 0;
+            background-color: #f1f1f1;
+            height: 80%;
+            overflow: hidden;
+            overflow-y: scroll;
+        }
+        #plant-list-view{
+            float: left;
+            width: 80%;
+            margin-right: 1%;
         }
 
     </style>
 </head>
 <body>
 
-<h1>Plant List Component</h1>
 
-<!--<div id="bed-list-view">-->
+    <div id="plant-list-view">
 
+        <div id="plant-list-header" (click)="handlePlantListClick($event.target.textContent)">
+            <a class="active">Plants</a>
+        </div>
 
-    <!--<ul id="bed-list" (click)="handleClick($event.target.textContent)">-->
-        <!--<li><a class="active">Bed</a></li>-->
+        <ul id="plant-list" (click)="handlePlantListClick($event.target.textContent)">
+            <li *ngFor="let plant of filteredPlants">
+                <a>{{ plant.cultivar }}</a>
+            </li>
+        </ul>
 
-        <!--<li *ngFor="let bed of gardenLocations">-->
-            <!--<a>{{ bed._id }}</a>-->
-        <!--</li>-->
-
-
-    <!--</ul>-->
-<!--</div>-->
-
-
-
-<!--<div id="plants-list-view">-->
-    <!--<ul id="plants-list">-->
-        <!--<li *ngFor="let plant of filteredPlants">-->
-            <!--<a>{{ plant.cultivar }}</a>-->
-        <!--</li>-->
-    <!--</ul>-->
-<!--</div>-->
-
+    </div>
 
 </body>
 </html>

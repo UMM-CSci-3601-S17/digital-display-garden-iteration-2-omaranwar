@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+/**
+ * @author Skye Antinozzi
+ * @author Shawn Saliyev
+ */
+import { Component } from '@angular/core';
 import { PlantListService } from "./plant-list.service";
 import { Plant } from "./plant";
-import { Bed } from "../../bed_list/src/bed";
 import { FilterBy } from "../../filter.pipe";
 
 @Component({
@@ -10,62 +13,41 @@ import { FilterBy } from "../../filter.pipe";
     providers: [ FilterBy ]
 })
 
-export class PlantListComponent implements OnInit {
-    private allPlants: Plant[];
+export class PlantListComponent {
 
+    // The list of filtered plant to display within the HTML
     private filteredPlants: Plant[] = [];
 
-    private static readonly ALL_PLANTS: string = "Bed";
-
-    // Don't filter if already filtered
-    public currentBedFilter;
+    // Static factory class instance variable
+    private static plantListComponent: PlantListComponent;
 
     constructor(private plantListService: PlantListService) {
-        // this.plants = this.plantListService.getPlants();
-        //this.filteredPlants = this.plants;
-    }
-
-    public getSelectedBed(): string{
-        return (<HTMLInputElement>document.getElementById("locationDropdown")).value;
-    }
-
-    public handleClick(bedName): void{
-        console.log("Checking Bed number " + bedName );
-
-        if(this.currentBedFilter != bedName) {
-
-            if(bedName === PlantListComponent.ALL_PLANTS){
-                console.log("All Plants");
-                this.filteredPlants = this.allPlants;
-            } else{
-                console.log("Filter Plants");
-                this.currentBedFilter = bedName;
-                this.filterByBedNumber(bedName);
-            }
-        }
+        // Keep track of 'this' for static factory method
+        PlantListComponent.plantListComponent = this;
     }
 
     /**
-     * Filters the Plant List by a bed name within the Bed list.
-     * @param bedName - the name of the bed to filter by
+     * Static factory method to return the currently instantiated PlantListComponent.
+     * @returns {PlantListComponent} - the current PlantListComponent
      */
-    public filterByBedNumber(bedName: string): void{
-
-        this.filteredPlants = [];
-
-        this.allPlants.forEach((plant, index) => {
-           if(plant.gardenLocation == bedName)
-               this.filteredPlants.push(plant);
-        });
+    public static getInstance(): PlantListComponent{
+        return PlantListComponent.plantListComponent;
     }
 
-    ngOnInit(): void {
-        this.plantListService.getPlants().subscribe(
-            plants => this.allPlants = plants,
-            err => {
-                console.log(err);
-            }
-        );
-
+    /**
+     * TODO: Needs to open a plant page overlay.
+     * @param selectedPlant - the cultivar of the selected plant
+     */
+    public handlePlantListClick(selectedPlant: String){
+        console.log("Plants: " + this.plantListService.getPlants());
     }
+
+    /**
+     * Sets the array of filtered plants.
+     * @param filteredPlants - the filtered plants to set
+     */
+    public setFilteredPlants(filteredPlants: Plant[]){
+        this.filteredPlants = filteredPlants;
+    }
+
 }

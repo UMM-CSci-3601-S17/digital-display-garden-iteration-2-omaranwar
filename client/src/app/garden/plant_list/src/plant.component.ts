@@ -11,18 +11,18 @@ export class PlantComponent implements OnInit {
     private id: string;
 
     constructor(private plantListService: PlantListService) {
-        // this.plants = this.plantListService.getPlants();
+        // this.plants = this.plantListService.getPlantsFromServer();
     }
 
     private subscribeToServiceForId() {
-        if (this.id) {
-            this.plantListService.getPlantById(this.id).subscribe(
-                plant => this.plant = plant,
-                err => {
-                    console.log(err);
-                }
-            );
-        }
+        // if (this.id) {
+        //     this.plantListService.getPlantById(this.id).subscribe(
+        //         plant => this.plant = plant,
+        //         err => {
+        //             console.log(err);
+        //         }
+        //     );
+        // }
     }
 
     setId(id: string) {
