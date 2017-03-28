@@ -80,7 +80,7 @@ public class PlantController {
     }
 
     /**
-     * Takes a String representing a hexadecimal ID number of a plant
+     * Takes a String, the ID number of a plant,
      * and when the ID is found in the database returns a JSON document
      * as a String of the following form
      *
@@ -88,7 +88,8 @@ public class PlantController {
      * {
      *  "_id"        : { "$oid": String },
      *  "commonName" : String,
-     *  "cultivar"   : String
+     *  "cultivar"   : String,
+     *  "id"         : String
      * }
      * </code>
      *
@@ -99,7 +100,7 @@ public class PlantController {
      *  null
      * </code>
      *
-     * @param id a hexadecimal ID number of a plant in the DB
+     * @param id the given ID number of a plant in the excel file (and therefore the DB)
      * @return a string representation of a JSON value
      */
     public String getPlant(String id) {
@@ -107,11 +108,8 @@ public class PlantController {
         FindIterable<Document> jsonPlant;
         String returnVal;
         try {
-
-//            jsonPlant = plantCollection.find(eq("_id", new ObjectId(id)))
-//                    .projection(fields(include("commonName", "cultivar")));
             jsonPlant = plantCollection.find(eq("id", id))
-                    .projection(fields(include("commonName", "cultivar")));
+                    .projection(fields(include("commonName", "cultivar", "id")));
 
             Iterator<Document> iterator = jsonPlant.iterator();
 
@@ -136,7 +134,7 @@ public class PlantController {
      * found successfully (false otherwise), but there is no indication of
      * whether the field was found.
      *
-     * @param id a hexadecimal ID number of a plant in the DB
+     * @param id the given ID number of a plant in the excel file (and therefore the DB)
      * @param field a field to be incremented in the metadata object of the plant
      * @return true if a plant was found
      * @throws com.mongodb.MongoCommandException when the id is valid and the field is empty
@@ -145,15 +143,8 @@ public class PlantController {
 
         ObjectId objectId;
 
-//        try {
-//            objectId = new ObjectId(id);
-//        } catch (IllegalArgumentException e) {
-//            return false;
-//        }
-
 
         Document searchDocument = new Document();
-//        searchDocument.append("_id", objectId);
         searchDocument.append("id", id);
 
         Bson updateDocument = inc("metadata." + field, 1);
@@ -182,14 +173,9 @@ public class PlantController {
             Document toInsert = new Document();
             Document parsedDocument = Document.parse(json);
 
-//            if (parsedDocument.containsKey("plantId") && parsedDocument.get("plantId") instanceof String) {
-//                toInsert.put("commentOnObjectOfId", new ObjectId(parsedDocument.getString("plantId")));
-//            } else {
-//                return false;
-//            }
 
-            if (parsedDocument.containsKey("id") && parsedDocument.get("id") instanceof String) {
-                toInsert.put("commentOnObjectOfId", parsedDocument.getString("id"));
+            if (parsedDocument.containsKey("plantId") && parsedDocument.get("plantId") instanceof String) {
+                toInsert.put("commentOnObjectOfId", parsedDocument.getString("plantId"));
             } else {
                 return false;
             }
@@ -203,10 +189,10 @@ public class PlantController {
             commentCollection.insertOne(toInsert);
 
         } catch (BsonInvalidOperationException e){
-            e.printStackTrace();
+//            e.printStackTrace();
             return false;
         } catch (org.bson.json.JsonParseException e){
-            e.printStackTrace();
+//            e.printStackTrace();
             return false;
         }
 

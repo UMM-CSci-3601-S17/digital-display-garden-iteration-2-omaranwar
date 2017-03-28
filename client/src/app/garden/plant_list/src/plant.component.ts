@@ -44,30 +44,22 @@ export class PlantComponent implements OnInit {
         this.route.params
             .switchMap((params: Params) => this.plantService.getPlantById(params['id']))
             .subscribe(plant => this.plant = plant);
-        console.log("CommonName = " + this.plant.commonName);
 
     }
 
-    // private rate(rating: string): void {
-    //     if (!this.rated) {
-    //         this.plantService.ratePlant(this.plant["_id"]["$oid"], rating)
-    //             .subscribe(succeeded => this.rated = succeeded);
-    //     }
-    // }
 
     private rate(rating: string): void {
         if (!this.rated) {
-             console.log("clicked = " + rating + " " + this.plant["_id"]["$oid"]);
+             // console.log("clicked = " + rating + " " + this.plant["id"]);
             this.plantService.ratePlant(this.plant["id"], rating)
                 .subscribe(succeeded => this.rated = succeeded);
         }
-        console.log("id = " + this.plant.id + " plantID = " + this.plant.plantID + " commonName = " + this.plant.commonName);
     }
 
     private comment(comment: string): void {
         if (!this.commented) {
             if (comment != null) {
-                this.plantService.commentPlant(this.plant["_id"]["$oid"], comment)
+                this.plantService.commentPlant(this.plant["id"], comment)
                     .subscribe(succeeded => this.commented = succeeded);
             }
         }
