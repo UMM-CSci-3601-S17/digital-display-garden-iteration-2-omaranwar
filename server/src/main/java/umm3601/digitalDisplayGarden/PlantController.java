@@ -1,6 +1,7 @@
 package umm3601.digitalDisplayGarden;
 
 import com.google.gson.Gson;
+import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.FindIterable;
@@ -40,8 +41,11 @@ public class PlantController {
         // Try connecting to a database
         MongoDatabase db = mongoClient.getDatabase("test");
 
+
         plantCollection = db.getCollection("plants");
         commentCollection = db.getCollection("comments");
+
+        commentCollection.drop();
     }
 
     // List plants
@@ -104,7 +108,9 @@ public class PlantController {
         String returnVal;
         try {
 
-            jsonPlant = plantCollection.find(eq("_id", new ObjectId(id)))
+//            jsonPlant = plantCollection.find(eq("_id", new ObjectId(id)))
+//                    .projection(fields(include("commonName", "cultivar")));
+            jsonPlant = plantCollection.find(eq("id", id))
                     .projection(fields(include("commonName", "cultivar")));
 
             Iterator<Document> iterator = jsonPlant.iterator();
@@ -139,15 +145,16 @@ public class PlantController {
 
         ObjectId objectId;
 
-        try {
-            objectId = new ObjectId(id);
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
+//        try {
+//            objectId = new ObjectId(id);
+//        } catch (IllegalArgumentException e) {
+//            return false;
+//        }
 
 
         Document searchDocument = new Document();
-        searchDocument.append("_id", objectId);
+//        searchDocument.append("_id", objectId);
+        searchDocument.append("id", id);
 
         Bson updateDocument = inc("metadata." + field, 1);
 
@@ -175,8 +182,14 @@ public class PlantController {
             Document toInsert = new Document();
             Document parsedDocument = Document.parse(json);
 
-            if (parsedDocument.containsKey("plantId") && parsedDocument.get("plantId") instanceof String) {
-                toInsert.put("commentOnObjectOfId", new ObjectId(parsedDocument.getString("plantId")));
+//            if (parsedDocument.containsKey("plantId") && parsedDocument.get("plantId") instanceof String) {
+//                toInsert.put("commentOnObjectOfId", new ObjectId(parsedDocument.getString("plantId")));
+//            } else {
+//                return false;
+//            }
+
+            if (parsedDocument.containsKey("id") && parsedDocument.get("id") instanceof String) {
+                toInsert.put("commentOnObjectOfId", parsedDocument.getString("id"));
             } else {
                 return false;
             }
@@ -193,6 +206,7 @@ public class PlantController {
             e.printStackTrace();
             return false;
         } catch (org.bson.json.JsonParseException e){
+            e.printStackTrace();
             return false;
         }
 

@@ -39,7 +39,11 @@ export class PlantListComponent {
      * @param selectedPlant - the cultivar of the selected plant
      */
     public handlePlantListClick(selectedPlant: String){
-        console.log("Plants: " + this.plantListService.getPlants());
+        // console.log("Plants: " + this.plantListService.getPlants());
+        let firstPlant: Plant = this.filteredPlants[5];
+        // console.log("_id = " + firstPlant.%0id);
+        console.log("id = " + firstPlant.id);
+        console.log("plantID = " + firstPlant.plantID);
     }
 
     /**

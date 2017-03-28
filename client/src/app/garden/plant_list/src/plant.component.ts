@@ -13,7 +13,7 @@ export class PlantComponent implements OnInit {
     private commented: Boolean = false;
     private currentQuery: string = "";
     // public plant: Plant = null;
-    public plant: Plant = {id: "", commonName: "", cultivar: "", gardenLocation: ""};
+    public plant: Plant = {id: "", plantID: "", plantType: "", commonName: "", cultivar: "", gardenLocation: "", year: "", source: "", pageURL: "", plantImageURLs: [], recognitions: []};
     private id: string;
 
     constructor(private plantService: PlantService,
@@ -21,7 +21,7 @@ export class PlantComponent implements OnInit {
     }
 
     private subscribeToServiceForId() {
-        // if (this.id) {
+        // if (this.id) {id" :
         //     this.plantListService.getPlantById(this.id).subscribe(
         //         plant => this.plant = plant,
         //         err => {
@@ -44,13 +44,24 @@ export class PlantComponent implements OnInit {
         this.route.params
             .switchMap((params: Params) => this.plantService.getPlantById(params['id']))
             .subscribe(plant => this.plant = plant);
+        console.log("CommonName = " + this.plant.commonName);
+
     }
+
+    // private rate(rating: string): void {
+    //     if (!this.rated) {
+    //         this.plantService.ratePlant(this.plant["_id"]["$oid"], rating)
+    //             .subscribe(succeeded => this.rated = succeeded);
+    //     }
+    // }
 
     private rate(rating: string): void {
         if (!this.rated) {
-            this.plantService.ratePlant(this.plant["_id"]["$oid"], rating)
+             console.log("clicked = " + rating + " " + this.plant["_id"]["$oid"]);
+            this.plantService.ratePlant(this.plant["id"], rating)
                 .subscribe(succeeded => this.rated = succeeded);
         }
+        console.log("id = " + this.plant.id + " plantID = " + this.plant.plantID + " commonName = " + this.plant.commonName);
     }
 
     private comment(comment: string): void {
