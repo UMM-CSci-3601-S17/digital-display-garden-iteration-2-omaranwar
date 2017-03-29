@@ -1,6 +1,7 @@
 package umm3601.plant;
 import com.google.gson.Gson;
 import org.bson.Document;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import umm3601.digitalDisplayGarden.Plant;
@@ -19,12 +20,17 @@ public class GetPlantById {
     }
 
     @Test
-    public void GetPlantByID() throws IOException {
+    public void GetAPlantByID() throws IOException {
         PlantController plantController = new PlantController();
+
+        PopulateMockDatabase mockUp = new PopulateMockDatabase();
+        mockUp.clearAndPopulateDBAgain();
 
         String jsonAsString = plantController.getPlant("16001");
         Document doc = Document.parse(jsonAsString);
-        assertEquals("alternanthera", doc.getString("commonName"));
+        assertEquals("alternanthera", doc.getString("commonName").toLowerCase());
+
+
 
     }
 
@@ -36,4 +42,8 @@ public class GetPlantById {
         assertEquals("null", plantController.getPlant("00000"));
     }
 
+    @AfterClass
+    public static void clean(){
+        PopulateMockDatabase.clearDB();
+    }
 }
