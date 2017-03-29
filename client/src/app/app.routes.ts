@@ -9,7 +9,8 @@ import {GardenComponent} from "./garden/src/garden-component";
 
 // Route Configuration
 export const routes: Routes = [
-    { path: '', component: GardenComponent }
+    { path: '', component: GardenComponent },
+    { path: 'plant', component: PlantComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

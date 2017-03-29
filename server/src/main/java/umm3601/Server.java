@@ -1,6 +1,5 @@
 package umm3601;
 
-import umm3601.user.UserController;
 import umm3601.digitalDisplayGarden.PlantController;
 
 import java.io.IOException;
@@ -22,7 +21,6 @@ public class Server {
         // a problem which is resolved in `server/build.gradle`.
         staticFiles.location("/public");
 
-        UserController userController = new UserController();
         PlantController plantController = new PlantController();
 
         options("/*", (request, response) -> {
@@ -36,7 +34,7 @@ public class Server {
             if (accessControlRequestMethod != null) {
                 response.header("Access-Control-Allow-Methods", accessControlRequestMethod);
             }
- 
+
             return "OK";
         });
 
@@ -49,25 +47,8 @@ public class Server {
         redirect.get("", "/");
         redirect.get("/", "http://localhost:9000");
 
-        // List users
-        get("api/users", (req, res) -> {
-            res.type("application/json");
-            return userController.listUsers(req.queryMap().toMap());
-        });
 
-        // See specific user
-        get("api/users/:id", (req, res) -> {
-            res.type("application/json");
-            String id = req.params("id");
-            return userController.getUser(id);
-        });
-
-        // Get average ages by company
-        get("api/avgUserAgeByCompany", (req, res) -> {
-            res.type("application/json");
-            return userController.getAverageAgeByCompany();
-        });
-
+//Possibly not needed
         // List plants
         get("api/plants", (req, res) -> {
             res.type("application/json");
@@ -85,6 +66,37 @@ public class Server {
             res.status(404);
             return "Sorry, we couldn't find that!";
         });
+
+        //region Usages From Iteration Group Rayquaza
+
+        // Get specific plant
+        get("api/plant/:id", (req, res) -> {
+            res.type("application/json");
+            String id = req.params("id");
+            return plantController.getPlant(id);
+        });
+
+        // Like a specific plant
+        get("api/plant/:id/like", (req, res) -> {
+            res.type("application/json");
+            String id = req.params("id");
+            return plantController.incrementMetadata(id, "likes");
+        });
+
+        // Dislike a specific plant
+        get("api/plant/:id/dislike", (req, res) -> {
+            res.type("application/json");
+            String id = req.params("id");
+            return plantController.incrementMetadata(id, "dislikes");
+        });
+
+        // Posting a comment
+        post("api/plant/leaveComment", (req, res) -> {
+            res.type("application/json");
+            return plantController.storePlantComment(req.body());
+        });
+
+        //endregion
 
     }
 

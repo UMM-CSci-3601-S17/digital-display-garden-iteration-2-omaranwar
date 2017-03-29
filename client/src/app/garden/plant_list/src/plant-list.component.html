@@ -48,9 +48,9 @@
             <a class="active">Plants</a>
         </div>
 
-        <ul id="plant-list" (click)="handlePlantListClick($event.target.textContent)">
-            <li *ngFor="let plant of filteredPlants">
-                <a>{{ plant.cultivar }}</a>
+        <ul id="plant-list">
+            <li *ngFor="let plant of filteredPlants" [routerLink]="['/plant']">
+                <a (click)="handlePlantListClick(plant)">{{ plant.cultivar }}</a>
             </li>
         </ul>
 

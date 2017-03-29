@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
 import { PlantListService } from "./plant-list.service";
 import { Plant } from "./plant";
 import { FilterBy } from "../../filter.pipe";
+import { PlantComponent } from "./plant.component";
 
 @Component({
     selector: 'plant-list',
@@ -18,7 +19,10 @@ export class PlantListComponent {
     // The list of filtered plant to display within the HTML
     private filteredPlants: Plant[] = [];
 
-    // Static factory class instance variable
+    // The currently selected plant within the list
+    private selectedPlant: Plant;
+
+    // Maintain a static class instance variable to provide data interaction between components
     private static plantListComponent: PlantListComponent;
 
     constructor(private plantListService: PlantListService) {
@@ -26,8 +30,10 @@ export class PlantListComponent {
         PlantListComponent.plantListComponent = this;
     }
 
+
     /**
      * Static factory method to return the currently instantiated PlantListComponent.
+     * Used for retrieving instances of the class when outside of the class.
      * @returns {PlantListComponent} - the current PlantListComponent
      */
     public static getInstance(): PlantListComponent{
@@ -38,8 +44,23 @@ export class PlantListComponent {
      * TODO: Needs to open a plant page overlay.
      * @param selectedPlant - the cultivar of the selected plant
      */
-    public handlePlantListClick(selectedPlant: String){
-        console.log("Plants: " + this.plantListService.getPlants());
+    public handlePlantListClick(selectedPlant: Plant){
+        console.log("handlePlantListClick(selectedPlant: Plant)");
+        console.log(selectedPlant.commonName);
+        this.filteredPlants.forEach((plant, index) => {
+            if(selectedPlant == plant){;
+                console.log(plant);
+                console.log(" [" + index + "]");
+
+                this.selectedPlant = selectedPlant;
+
+            }
+        });
+    }
+
+    public getSelectedPlant(): Plant{
+        console.log(this.selectedPlant);
+        return this.selectedPlant;
     }
 
     /**
@@ -59,8 +80,11 @@ export class PlantListComponent {
         return this.filteredPlants;
     }
 
+    /**
+     *
+     * @param bedName
+     */
     public filterByBedName(bedName: string): void{
         this.plantListService.filterByBedName(bedName);
     }
-
 }

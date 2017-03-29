@@ -15,6 +15,7 @@ import {PlantComponent} from "./app/garden/plant_list/src/plant.component";
 import {BedListComponent} from "./app/garden/bed_list/src/bed-list.component";
 import {BedListService} from "./app/garden/bed_list/src/bed-list.service";
 import {GardenComponent} from "./app/garden/src/garden-component";
+import {PlantService} from "./app/garden/plant_list/src/plant.service";
 
 @NgModule({
     imports: [
@@ -32,9 +33,10 @@ import {GardenComponent} from "./app/garden/src/garden-component";
         PlantListComponent,
         GardenComponent,
         DialogComponent,
-        BedListComponent
+        BedListComponent,
+        PlantComponent
     ],
-    providers: [ PlantListService, BedListService ],
+    providers: [ PlantListService, BedListService, PlantService ],
     bootstrap: [ AppComponent ]
 })
 
