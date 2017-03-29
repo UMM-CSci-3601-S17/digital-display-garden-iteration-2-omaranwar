@@ -186,6 +186,7 @@ public class PlantController {
                 return false;
             }
 
+            this.incrementMetadata(parsedDocument.getString("plantId"), "CommentsOnPlant");
             commentCollection.insertOne(toInsert);
 
         } catch (BsonInvalidOperationException e){
