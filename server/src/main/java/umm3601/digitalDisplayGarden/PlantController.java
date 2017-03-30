@@ -169,7 +169,6 @@ public class PlantController {
     public boolean storePlantComment(String json) {
 
         try {
-
             Document toInsert = new Document();
             Document parsedDocument = Document.parse(json);
 
