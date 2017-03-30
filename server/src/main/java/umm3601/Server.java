@@ -1,10 +1,15 @@
 package umm3601;
 
+import spark.utils.IOUtils;
 import umm3601.digitalDisplayGarden.PlantController;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import static spark.Spark.*;
+import spark.Route;
+import spark.utils.IOUtils;
+import java.io.InputStream;
 
 import umm3601.digitalDisplayGarden.ExcelParser;
 
@@ -45,7 +50,12 @@ public class Server {
 
         // Redirects for the "home" page
         redirect.get("", "/");
-//        redirect.get("/", "http://localhost:9000");
+
+        Route clientRoute=(req,res) -> {
+            InputStream stream = plantController.getClass().getResourceAsStream("/public/index.html");
+            return IOUtils.toString(stream);
+        };
+        get("/", clientRoute);
 
 
 //Totally needed and I'm not sure why
@@ -87,8 +97,6 @@ public class Server {
             res.type("application/json");
             return plantController.storePlantComment(req.body());
         });
-
-
 
         // Handle "404" file not found requests:
         notFound((req, res) -> {
