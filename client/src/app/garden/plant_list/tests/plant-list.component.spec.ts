@@ -3,6 +3,10 @@ import { Observable } from "rxjs";
 import {PlantListComponent} from "../src/plant-list.component";
 import {PlantListService} from "../src/plant-list.service";
 import {Plant} from "../src/plant";
+import {FormsModule} from "@angular/forms";
+import {RouterTestingModule} from "@angular/router/testing";
+
+
 
 describe("Plant list", () => {
 
@@ -61,7 +65,8 @@ describe("Plant list", () => {
 
         TestBed.configureTestingModule({
             declarations: [ PlantListComponent ],
-            providers:    [ { provide: PlantListService, useValue: plantListServiceStub } ]
+            providers:    [ { provide: PlantListService, useValue: plantListServiceStub } ],
+            imports:      [RouterTestingModule, FormsModule]
         })
     });
 

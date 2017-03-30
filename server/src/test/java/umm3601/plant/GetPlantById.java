@@ -1,6 +1,6 @@
 package umm3601.plant;
-
 import com.google.gson.Gson;
+import org.bson.Document;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class FilterByUniqueGardenLocations {
+public class GetPlantById {
     @Before
     public void setUpDB() throws IOException{
         PopulateMockDatabase mockDatabase = new PopulateMockDatabase();
@@ -20,16 +20,26 @@ public class FilterByUniqueGardenLocations {
     }
 
     @Test
-    public void findByGardenLocation() throws IOException {
+    public void GetAPlantByID() throws IOException {
         PlantController plantController = new PlantController();
-        GardenLocation[] filteredPlants;
-        Gson gson = new Gson();
-        //System.out.println();
-        String rawPlants = plantController.getGardenLocations();
-        filteredPlants = gson.fromJson(rawPlants, GardenLocation[].class);
-        assertEquals("Incorrect number of unique garden locations", 2, filteredPlants.length);
-        assertEquals("Incorrect zero index", "10", filteredPlants[0]._id);
-        assertEquals("Incorrect value for index 1", "7", filteredPlants[1]._id);
+
+        PopulateMockDatabase mockUp = new PopulateMockDatabase();
+        mockUp.clearAndPopulateDBAgain();
+
+        String jsonAsString = plantController.getPlant("16001");
+        Document doc = Document.parse(jsonAsString);
+        assertEquals("alternanthera", doc.getString("commonName").toLowerCase());
+
+
+
+    }
+
+    @Test
+    public void GetNullPlant() throws IOException{
+
+        PlantController plantController = new PlantController();
+
+        assertEquals("null", plantController.getPlant("00000"));
     }
 
     @AfterClass

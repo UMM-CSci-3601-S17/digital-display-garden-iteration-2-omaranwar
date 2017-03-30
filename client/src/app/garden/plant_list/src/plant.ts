@@ -1,6 +1,7 @@
 export class Plant {
-    id: string;
-    plantID: string;
+    // _id is the unique primary key in the db
+    id: string; // id in the excel sheet
+    plantID: string; // is undefined
     plantType: string;
     commonName: string;
     cultivar: string;

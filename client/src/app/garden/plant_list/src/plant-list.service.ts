@@ -68,4 +68,8 @@ export class PlantListService {
             }
         }
     }
+
+    getPlantById(id: string): Observable<Plant> {
+        return this.http.request(API_URL + "plant/" + id).map(res => res.json());
+    }
 }

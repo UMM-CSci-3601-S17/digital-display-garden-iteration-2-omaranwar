@@ -1,1 +1,66 @@
-<h1>Hello Plant Component</h1>
+<style>
+    .image{
+        position: relative;
+        width:100%;
+    }
+    h1{
+        position: absolute;
+    }
+    .footer{
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        padding: 1rem;
+        text-align: center;
+    }
+
+</style>
+
+<a href="javascript:history.go(-1)" class="alignleft"><button type="button">Back</button></a>
+<div class="image">
+    <img src="wroc.jpg" width="100%"/>
+</div>
+
+<p *ngIf="plant == null"> The plant you are looking for does not exist!</p>
+<div *ngIf="plant !== null" class= "text-center" >
+    <br><br>
+    <h3 >{{plant.cultivar}}</h3>
+    <p> Common Name: {{plant.commonName}}</p>
+    <p> Bed Number: {{plant.gardenLocation}}</p>
+    <div *ngIf="!rated">
+        <button type="button" (click)="this.rate('like')"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button>
+        <button type="button" (click)="this.rate('dislike')"><span class="glyphicon glyphicon-thumbs-down"></span> Dislike</button>
+    </div>
+    <div *ngIf="rated">
+        Thanks for your feedback!
+    </div>
+    <br>
+    <div *ngIf="!commented">
+        <textarea [(ngModel)]="commentText" rows="5" wrap="on" style="width: 95%;"></textarea>
+
+        <button type="button" (click)="this.comment(commentText)">Leave a comment</button>
+
+    </div>
+    <div *ngIf="commented">
+        Your comment has been submitted.
+    </div>
+
+
+    <!--<div *ngIf="plant.metadata == null || plant.metadata == undefined ">-->
+        <!--Comments: 0-->
+    <!--</div>-->
+
+    <!--<div *ngIf="plant.metadata !== undefined && plant.metadata !== null">-->
+        <!--<div *ngIf="plant.metadata.CommentsOnPlant !== null && plant.metadata.CommentsOnPlant !== undefined">-->
+            <!--Comments: {{plant.metadata.CommentsOnPlant}}-->
+        <!--</div>-->
+        <!--<div *ngIf="plant.metadata.CommentsOnPlant == null || plant.metadata.CommentsOnPlant == undefined">-->
+            <!--Comments: 0-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <div class="footer">
+        For more Information, contact WCROC at 867-5309
+    </div>
+</div>

@@ -1,6 +1,7 @@
 package umm3601.plant;
 
 import com.google.gson.Gson;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import umm3601.digitalDisplayGarden.Plant;
@@ -48,5 +49,10 @@ public class FilterByCommonName {
         String rawPlants = plantController.listPlants(queryParams);
         filteredPlants = gson.fromJson(rawPlants, Plant[].class);
         assertEquals("Incorrect number of plants with commonName Bob", 0, filteredPlants.length);
+    }
+
+    @AfterClass
+    public static void clean(){
+        PopulateMockDatabase.clearDB();
     }
 }

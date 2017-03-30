@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
 import { PlantListService } from "./plant-list.service";
 import { Plant } from "./plant";
 import { FilterBy } from "../../filter.pipe";
+import { PlantComponent} from "./plant.component";
+import {PlantService} from './plant.service';
 
 @Component({
     selector: 'plant-list',
@@ -17,6 +19,9 @@ export class PlantListComponent {
 
     // The list of filtered plant to display within the HTML
     private filteredPlants: Plant[] = [];
+
+    // the currently selected platn within the html
+    private selectedPlant: Plant;
 
     // Static factory class instance variable
     private static plantListComponent: PlantListComponent;
@@ -38,8 +43,16 @@ export class PlantListComponent {
      * TODO: Needs to open a plant page overlay.
      * @param selectedPlant - the cultivar of the selected plant
      */
-    public handlePlantListClick(selectedPlant: String){
-        console.log("Plants: " + this.plantListService.getPlants());
+
+    private handlePlantListClick(selectedPlant: Plant){
+        this.filteredPlants.forEach((plant, index) => {
+            if(selectedPlant == plant){;
+
+                this.selectedPlant = selectedPlant;
+
+            }
+        });
+        this.plantListService.getPlantById(selectedPlant.id);
     }
 
     /**
