@@ -184,9 +184,9 @@ public class ExcelParser {
         return keys;
     }
 
-    public static boolean emptyBed(String[] keys, String[][] cellValue, int rowNum) {
+    public static boolean ignoreRow(String[] keys, String[][] cellValue, int rowNum, String column, String searchBy) {
         for(int i = 0; i < keys.length; i++) {
-            if(keys[i].equals("gardenLocation") && cellValue[rowNum][i].equals("")) {
+            if(keys[i].equals(column) && cellValue[rowNum][i].toLowerCase().equals(searchBy)) {
                 return true;
             }
         }
@@ -204,7 +204,9 @@ public class ExcelParser {
         String[] keys = getKeys(cellValues);
 
         for (int i = 4; i < cellValues.length; i++){
-            if(!emptyBed(keys, cellValues, i)) {
+            boolean emptyBed = ignoreRow(keys,cellValues,i,"gardenLocation", "");
+            boolean xed = ignoreRow(keys,cellValues,i,"notIncluded", "x");
+            if(!emptyBed && !xed) {
                 Map<String, String> map = new HashMap<String, String>();
                 for (int j = 0; j < cellValues[i].length; j++) {
                     map.put(keys[j], cellValues[i][j]);
