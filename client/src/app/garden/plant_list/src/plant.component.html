@@ -18,8 +18,8 @@
 <div *ngIf="plant !== null" class= "text-center" >
     <br><br>
     <h3 >{{plant.cultivar}}</h3>
-    <br>
     <p> Common Name: {{plant.commonName}}</p>
+    <p> Bed Number: {{plant.gardenLocation}}</p>
     <div *ngIf="!rated">
         <button type="button" (click)="this.rate('like')"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button>
         <button type="button" (click)="this.rate('dislike')"><span class="glyphicon glyphicon-thumbs-down"></span> Dislike</button>
@@ -32,8 +32,23 @@
         <textarea [(ngModel)]="commentText" rows="5" wrap="on" style="width: 95%;"></textarea>
 
         <button type="button" (click)="this.comment(commentText)">Leave a comment</button>
+
     </div>
     <div *ngIf="commented">
         Your comment has been submitted.
     </div>
+
+    <div *ngIf="plant.metadata == null || plant.metadata == undefined ">
+        Comments: 0
+    </div>
+
+    <div *ngIf="plant.metadata !== undefined && plant.metadata !== null">
+        <div *ngIf="plant.metadata.CommentsOnPlant !== null && plant.metadata.CommentsOnPlant !== undefined">
+            Comments: {{plant.metadata.CommentsOnPlant}}
+        </div>
+        <div *ngIf="plant.metadata.CommentsOnPlant == null || plant.metadata.CommentsOnPlant == undefined">
+            Comments: 0
+        </div>
+    </div>
+
 </div>

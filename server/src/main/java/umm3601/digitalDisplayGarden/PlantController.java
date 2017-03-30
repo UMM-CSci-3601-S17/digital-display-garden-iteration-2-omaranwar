@@ -75,7 +75,7 @@ public class PlantController {
                         Aggregates.group("$gardenLocation"),
                         Aggregates.sort(Sorts.ascending("_id"))
                 ));
-        System.err.println(JSON.serialize(documents));
+//        System.err.println(JSON.serialize(documents));
         return JSON.serialize(documents);
     }
 
@@ -109,7 +109,7 @@ public class PlantController {
         String returnVal;
         try {
             jsonPlant = plantCollection.find(eq("id", id))
-                    .projection(fields(include("commonName", "cultivar", "id")));
+                    .projection(fields(include("commonName", "cultivar", "id", "gardenLocation", "metadata", "metadata.CommentsOnPlants")));
 
             Iterator<Document> iterator = jsonPlant.iterator();
 

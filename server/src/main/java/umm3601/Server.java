@@ -48,8 +48,8 @@ public class Server {
 //        redirect.get("/", "http://localhost:9000");
 
 
-//Possibly not needed
-        // List plants
+//Totally needed and I'm not sure why
+//         List plants
         get("api/plants", (req, res) -> {
             res.type("application/json");
             return plantController.listPlants(req.queryMap().toMap());
