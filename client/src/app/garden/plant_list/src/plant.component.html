@@ -6,6 +6,14 @@
     h1{
         position: absolute;
     }
+    .footer{
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        padding: 1rem;
+        text-align: center;
+    }
 
 </style>
 
@@ -38,6 +46,7 @@
         Your comment has been submitted.
     </div>
 
+
     <div *ngIf="plant.metadata == null || plant.metadata == undefined ">
         Comments: 0
     </div>
@@ -51,4 +60,7 @@
         </div>
     </div>
 
+    <div class="footer">
+        For more Information, contact WCROC at 867-5309
+    </div>
 </div>
