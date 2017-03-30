@@ -27,7 +27,7 @@ public class FilterByUniqueGardenLocations {
         String rawPlants = plantController.getGardenLocations();
         filteredPlants = gson.fromJson(rawPlants, GardenLocation[].class);
         assertEquals("Incorrect number of unique garden locations", 2, filteredPlants.length);
-        assertEquals("Incorrect zero index", "10.0", filteredPlants[0]._id);
-        assertEquals("Incorrect value for index 1", "7.0", filteredPlants[1]._id);
+        assertEquals("Incorrect zero index", "7.0", filteredPlants[0]._id);
+        assertEquals("Incorrect value for index 1", "10.0", filteredPlants[1]._id);
     }
 }

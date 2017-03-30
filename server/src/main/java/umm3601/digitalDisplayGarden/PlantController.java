@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.*;
 
 import static com.mongodb.client.model.Filters.eq;
+import static java.lang.Double.parseDouble;
 
 public class PlantController {
 
@@ -42,13 +43,13 @@ public class PlantController {
         Document filterDoc = new Document();
 
         if (queryParams.containsKey("gardenLocation")) {
-            String location =(queryParams.get("gardenLocation")[0]);
+            String location = (queryParams.get("gardenLocation")[0]);
             filterDoc = filterDoc.append("gardenLocation", location);
         }
 
 
         if (queryParams.containsKey("commonName")) {
-            String commonName =(queryParams.get("commonName")[0]);
+            String commonName = (queryParams.get("commonName")[0]);
             filterDoc = filterDoc.append("commonName", commonName);
         }
 
@@ -57,7 +58,19 @@ public class PlantController {
         return JSON.serialize(matchingPlants);
     }
 
-    public String getGardenLocations(){
+    public String sortGardenLocations(String gardenLocationJSON) {
+        Bed[] filteredBeds;
+        Gson gson = new Gson();
+
+        filteredBeds = gson.fromJson(gardenLocationJSON, Bed[].class);
+
+        BedComparator bedComparator = new BedComparator();
+        Arrays.sort(filteredBeds, bedComparator);
+
+        return gson.toJson(filteredBeds);
+    }
+
+    public String getGardenLocations() {
         AggregateIterable<Document> documents
                 = plantCollection.aggregate(
                 Arrays.asList(
@@ -65,6 +78,66 @@ public class PlantController {
                         Aggregates.sort(Sorts.ascending("_id"))
                 ));
         System.err.println(JSON.serialize(documents));
-        return JSON.serialize(documents);
+
+        String toReturn = sortGardenLocations(JSON.serialize(documents));
+
+        return toReturn;
+
+    }
+
+
+    public static void printArray(Bed[] bedArray) {
+        System.out.print("[");
+        for (int i = 0; i < bedArray.length; i++) {
+            if(i == bedArray.length -1){
+                System.out.println(bedArray[i]._id + "]");
+                break;
+            }
+            System.out.print(bedArray[i]._id + ", ");
+        }
+    }
+
+}
+
+class BedComparator implements Comparator<Bed>{
+
+    @Override
+    public int compare(Bed firstBed, Bed secondBed) {
+
+        boolean firstBedDouble = false;
+        boolean otherBedDouble = false;
+
+        Double firstAsDouble = new Double(0);
+        Double otherAsDouble = new Double(0);
+
+        String currentBedString = firstBed._id.toString();
+        String otherBedString = secondBed._id.toString();
+
+        try {
+            firstAsDouble = parseDouble(firstBed._id.toString());
+            firstBedDouble = true;
+        }catch (NumberFormatException e){
+            firstBedDouble = false;
+        }
+
+        try {
+            otherAsDouble = parseDouble(secondBed._id.toString());
+            otherBedDouble = true;
+        }catch (NumberFormatException e){
+            otherBedDouble = false;
+        }
+
+        if(firstBedDouble && otherBedDouble){
+            return firstAsDouble.compareTo(otherAsDouble);
+        }
+        else if(firstBedDouble){
+            return -1;
+        }
+        else if(otherBedDouble) {
+            return 1;
+        }
+        else {
+            return currentBedString.compareTo(otherBedString);
+        }
     }
 }

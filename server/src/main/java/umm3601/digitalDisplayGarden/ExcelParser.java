@@ -184,6 +184,15 @@ public class ExcelParser {
         return keys;
     }
 
+    public static boolean ignoreRow(String[] keys, String[][] cellValue, int rowNum, String column, String searchBy) {
+        for(int i = 0; i < keys.length; i++) {
+            if(keys[i].equals(column) && cellValue[rowNum][i].toLowerCase().equals(searchBy)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // Moves row by row through the 2D array and adds content for every flower paired with keys into a document
     // Uses the document to one at a time, add flower information into the database.
     public static void populateDatabase(String[][] cellValues){
@@ -195,14 +204,18 @@ public class ExcelParser {
         String[] keys = getKeys(cellValues);
 
         for (int i = 4; i < cellValues.length; i++){
-            Map<String, String> map = new HashMap<String, String>();
-            for(int j = 0; j < cellValues[i].length; j++){
-                map.put(keys[j], cellValues[i][j]);
-            }
+            boolean emptyBed = ignoreRow(keys,cellValues,i,"gardenLocation", "");
+            boolean xed = ignoreRow(keys,cellValues,i,"notIncluded", "x");
+            if(!emptyBed && !xed) {
+                Map<String, String> map = new HashMap<String, String>();
+                for (int j = 0; j < cellValues[i].length; j++) {
+                    map.put(keys[j], cellValues[i][j]);
+                }
 
-            Document doc = new Document();
-            doc.putAll(map);
-            plants.insertOne(doc);
+                Document doc = new Document();
+                doc.putAll(map);
+                plants.insertOne(doc);
+            }
         }
     }
 
