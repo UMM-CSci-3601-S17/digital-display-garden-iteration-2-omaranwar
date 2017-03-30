@@ -23,6 +23,7 @@ import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Projections.include;
 import static com.mongodb.client.model.Updates.*;
 import static com.mongodb.client.model.Projections.fields;
+import static java.lang.Double.parseDouble;
 
 public class PlantController {
 
@@ -107,49 +108,9 @@ public class PlantController {
         }
     }
 
-}
 
-class BedComparator implements Comparator<Bed>{
 
-    @Override
-    public int compare(Bed firstBed, Bed secondBed) {
 
-        boolean firstBedDouble = false;
-        boolean otherBedDouble = false;
-
-        Double firstAsDouble = new Double(0);
-        Double otherAsDouble = new Double(0);
-
-        String currentBedString = firstBed._id.toString();
-        String otherBedString = secondBed._id.toString();
-
-        try {
-            firstAsDouble = parseDouble(firstBed._id.toString());
-            firstBedDouble = true;
-        }catch (NumberFormatException e){
-            firstBedDouble = false;
-        }
-
-        try {
-            otherAsDouble = parseDouble(secondBed._id.toString());
-            otherBedDouble = true;
-        }catch (NumberFormatException e){
-            otherBedDouble = false;
-        }
-
-        if(firstBedDouble && otherBedDouble){
-            return firstAsDouble.compareTo(otherAsDouble);
-        }
-        else if(firstBedDouble){
-            return -1;
-        }
-        else if(otherBedDouble) {
-            return 1;
-        }
-        else {
-            return currentBedString.compareTo(otherBedString);
-        }
-    }
 
     /**
      * Takes a String, the ID number of a plant,
@@ -270,5 +231,44 @@ class BedComparator implements Comparator<Bed>{
 
         return true;
     }
+}
 
+class BedComparator implements Comparator<Bed> {
+
+    @Override
+    public int compare(Bed firstBed, Bed secondBed) {
+
+        boolean firstBedDouble = false;
+        boolean otherBedDouble = false;
+
+        Double firstAsDouble = new Double(0);
+        Double otherAsDouble = new Double(0);
+
+        String currentBedString = firstBed._id.toString();
+        String otherBedString = secondBed._id.toString();
+
+        try {
+            firstAsDouble = parseDouble(firstBed._id.toString());
+            firstBedDouble = true;
+        } catch (NumberFormatException e) {
+            firstBedDouble = false;
+        }
+
+        try {
+            otherAsDouble = parseDouble(secondBed._id.toString());
+            otherBedDouble = true;
+        } catch (NumberFormatException e) {
+            otherBedDouble = false;
+        }
+
+        if (firstBedDouble && otherBedDouble) {
+            return firstAsDouble.compareTo(otherAsDouble);
+        } else if (firstBedDouble) {
+            return -1;
+        } else if (otherBedDouble) {
+            return 1;
+        } else {
+            return currentBedString.compareTo(otherBedString);
+        }
+    }
 }
