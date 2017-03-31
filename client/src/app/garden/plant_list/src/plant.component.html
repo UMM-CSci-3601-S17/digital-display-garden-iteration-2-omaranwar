@@ -33,8 +33,9 @@
         }
     </style>
 
-    <a href="javascript:history.go(-1)" class="alignleft"><button type="button">Back</button></a>
+    <a href="javascript:history.go(-1)" class="alignleft" class="btn btn-default"><span></span>Back</a>
 
+    <br><br>
     <div class="image">
         <img src="../res/wroc.jpg" width="100%"/>
     </div>
@@ -46,8 +47,12 @@
     <h3> Common Name: {{plant.commonName}}</h3>
     <h3> Bed Number: {{plant.gardenLocation}}</h3>
     <div *ngIf="!rated">
-        <button type="button" (click)="this.rate('like')"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button>
-        <button type="button" (click)="this.rate('dislike')"><span class="glyphicon glyphicon-thumbs-down"></span> Dislike</button>
+        <a class="btn btn-success" (click)="this.rate('like')">
+            <span class="glyphicon glyphicon-thumbs-up"> </span> Like
+        </a>
+        <a class="btn btn-primary" (click)="this.rate('dislike')">
+            <span class="glyphicon glyphicon-thumbs-down"> </span> Dislike
+        </a>
     </div>
     <div *ngIf="rated">
         <h3>Thanks for your feedback!</h3>
@@ -56,13 +61,15 @@
     <div *ngIf="!commented">
         <textarea [(ngModel)]="commentText" rows="5" wrap="on" style="width: 95%;"></textarea>
 <br>
-        <button type="button" (click)="this.comment(commentText)" >Leave a comment</button>
+        <a class="btn btn-default" (click)="this.comment(commentText)">
+            Leave a comment
+        </a>
 
     </div>
     <div *ngIf="commented">
         <h3>Your comment has been submitted.</h3>
     </div>
-
+    <br>
         <div class="footer">
             For more information, contact WCROC at 867-5309
         </div>
