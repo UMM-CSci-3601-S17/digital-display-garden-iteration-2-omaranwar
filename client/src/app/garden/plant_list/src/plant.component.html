@@ -4,7 +4,7 @@
         width:100%;
     }
     h1{
-        position: absolute;
+        position: relative;
     }
     .footer{
         position: relative;
@@ -20,23 +20,24 @@
 
 </style>
 
-<a href="javascript:history.go(-1)" class="alignleft"><button type="button">Back</button></a>
-<div class="image">
-    <img src="wroc.jpg" width="100%"/>
-</div>
+    <a href="javascript:history.go(-1)" class="alignleft"><button type="button">Back</button></a>
+
+    <div class="image">
+        <img src="wroc.jpg" width="100%"/>
+    </div>
+
 
 <p *ngIf="plant == null"> The plant you are looking for does not exist!</p>
 <div *ngIf="plant !== null" class= "text-center" >
-    <br><br>
-    <h3 >{{plant.cultivar}}</h3>
-    <p> Common Name: {{plant.commonName}}</p>
-    <p> Bed Number: {{plant.gardenLocation}}</p>
+    <h1 >{{plant.cultivar}}</h1>
+    <h3> Common Name: {{plant.commonName}}</h3>
+    <h3> Bed Number: {{plant.gardenLocation}}</h3>
     <div *ngIf="!rated">
         <button type="button" (click)="this.rate('like')"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button>
         <button type="button" (click)="this.rate('dislike')"><span class="glyphicon glyphicon-thumbs-down"></span> Dislike</button>
     </div>
     <div *ngIf="rated">
-        Thanks for your feedback!
+        <h3>Thanks for your feedback!</h3>
     </div>
     <br>
     <div *ngIf="!commented">
@@ -46,7 +47,7 @@
 
     </div>
     <div *ngIf="commented">
-        Your comment has been submitted.
+        <h3>Your comment has been submitted.</h3>
     </div>
 
 
