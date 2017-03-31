@@ -17,6 +17,8 @@ import umm3601.digitalDisplayGarden.ExcelParser;
 public class Server {
     public static void main(String[] args) throws IOException {
 
+        port(4568);
+
         ExcelParser parser = new ExcelParser(false);
         parser.parseExcel();
 
