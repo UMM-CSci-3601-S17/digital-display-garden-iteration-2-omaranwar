@@ -1,29 +1,30 @@
-# Claude Arabo 🇫🇷 🥈 🤺  
+# Omar Anwar
 
-![Claude Arabo](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-1-claudearabo/blob/MakeMarkdownDocumentation/Documentation/Graphics/claude-arabo.jpg)
 
-## We are Claude Arabo   
-Claude Arabo was a visionary french fencer who won silver in the 1964 Summer Olympics. You can learn more about Claude [here](https://fr.wikipedia.org/wiki/Claude_Arabo). 
+## We are Omar Anwar  
+Omar Anwar was a British cricketer who played for Oxford UCCE. You can learn more about Omar [here](https://en.wikipedia.org/wiki/Omar_Anwar) or [here](http://www.vipfaq.com/Omar%20Anwar.html)
+
 Our team members are: 
-* Luz Lopez  
+* Skye Antinozzi
+* Courtney Cook
+* Shawn Saliyev
 * Leonid Scott 
-* Brittney Ferrian
-* Nathan Beneke 
 
 ## Stories   
-#### Parse Excel (5 Jellybeans) 
-Parse Excel from an `.xlsx` file into our database.  
-#### Generate Webpages (9 Jellybeans)
-Being able to load on  the webpage, being able to grab information and drop on page.  
-#### Generate QR Codes **Flexible** (3 Jellybeans)  
-Generate unique URL's and find a tool that allows us to automatically generate, label, and store QR Codes. 
-
-## Team Velocity
-* Average Team Velocity(Magnitude): **14 Jellybeans per week**    
+#### Present plant data in a list (3 jellybeans) 
+Allow the customer to see what's on the database  
+#### Filter by bed number (4 jellybeans)
+Plant data is filtered by bed number
+#### Display specific plant info (7 jellybeans)  
+Display the information pages for individual plants, accessible form the bed pages
+#### Gather metadata from plant info pages (5 jellybeans)
+Get likes, dislikes, pageviews, and comments from plant pages, and store them on the server
+ 
 
 ## Documentation
-* [Excel File Requirements](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-1-claudearabo/blob/MakeMarkdownDocumentation/Documentation/ExcelFileRequirements.md)  
-* [Excel Parser Documentation](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-1-claudearabo/blob/MakeMarkdownDocumentation/Documentation/ExcelParser.md) 
+* [Excel File Requirements](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-2-omaranwar/blob/master/Documentation/ExcelFileRequirements.md)  
+* [Excel Parser Documentation](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-2-omaranwar/blob/master/Documentation/ExcelParser.md)
+* [PlantController](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-2-omaranwar/tree/master/Documentation/PlantController.md)
 
 ## Running your project
 > Run the server  

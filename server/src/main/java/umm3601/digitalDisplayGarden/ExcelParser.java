@@ -17,8 +17,6 @@ import org.bson.Document;
 
 public class ExcelParser {
 
-   // public static String FILE_NAME = "/home/Dogxx000/IdeaProjects/digital-display-garden-iteration-1-claudearabo/server/src/main/java/umm3601/digitalDisplayGarden/AccessionList2016.xlsx";
-   //public static String FILE_NAME = new File("server/src/main/java/umm3601/digitalDisplayGarden/AccessionList2016.xlsx").getAbsolutePath();
    public static String FILE_NAME = "/AccessionList2016.xlsx";
 
     public static void main(String[] args) {
@@ -64,7 +62,6 @@ public class ExcelParser {
                     datatypeSheet.getRow(3).getLastCellNum())];
 
             for(Row currentRow : datatypeSheet) {
-                //cellValues[currentRow.getRowNum()] = new String[currentRow.getLastCellNum()];
 
                 for (Cell currentCell : currentRow) {
 
@@ -177,7 +174,6 @@ public class ExcelParser {
             if(keys[i].equals("Garden  Location")) keys[i] = "gardenLocation";
             if(keys[i].contains(" ")) keys[i] = keys[i].replace(" ","");
             if(keys[i].contains("=")) keys[i] = keys[i].replace("=", "");
-            //if(keys[i].contains((UTF16.valueOf(0x00AE)))) keys[i].replaceAll(UTF16.valueOf(0x00AE), "");
 
         }
 
