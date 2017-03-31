@@ -1,13 +1,13 @@
 /**
- * @author Skye Antinozzi
- * @author Shawn Saliyev
+ * Represents all functions and data that are contained within the Plant list view within the Garden
+ * interface. The list contains all plants that have been filtered by the current Bed list selection.
+ *
+ * @author Iteration 2 - Team Omar Anwar
  */
 import { Component } from '@angular/core';
 import { PlantListService } from "./plant-list.service";
 import { Plant } from "./plant";
 import { FilterBy } from "../../filter.pipe";
-import { PlantComponent} from "./plant.component";
-import {PlantService} from './plant.service';
 
 @Component({
     selector: 'plant-list',
@@ -40,16 +40,14 @@ export class PlantListComponent {
     }
 
     /**
-     * TODO: Needs to open a plant page overlay.
-     * @param selectedPlant - the cultivar of the selected plant
+     * Upon a click or touch event within the PlantListComponent the currently selected Plant's
+     * PlantComponent view will be opened and presented to the user.
+     * @param selectedPlant - the currently selected plant
      */
-
     private handlePlantListClick(selectedPlant: Plant){
         this.filteredPlants.forEach((plant, index) => {
-            if(selectedPlant == plant){;
-
+            if(selectedPlant == plant){
                 this.selectedPlant = selectedPlant;
-
             }
         });
         this.plantListService.getPlantById(selectedPlant.id);
@@ -72,6 +70,10 @@ export class PlantListComponent {
         return this.filteredPlants;
     }
 
+    /**
+     * Filters the filteredplants array by the provided bed name.
+     * @param bedName - the bed name to filter the PlantListComponent's data by
+     */
     public filterByBedName(bedName: string): void{
         this.plantListService.filterByBedName(bedName);
     }

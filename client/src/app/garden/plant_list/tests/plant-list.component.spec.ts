@@ -18,47 +18,30 @@ describe("Plant list", () => {
     };
 
     beforeEach(() => {
-        // stub UserService for test purposes
+        // stub PlantService for test purposes
         plantListServiceStub = {
             getPlants: () => Observable.of([
                 {
-                    id: "1",
-                    plantID: "PlantID1",
-                    plantType: "PlantType1",
+                    id: "PlantID1",
                     commonName: "CommonName1",
                     cultivar: "Cultivar1",
                     source: "Source1",
                     gardenLocation: "BedName1",
-                    year: "Year1",
-                    pageURL: "PageURL1",
-                    plantImageURLs: null,
-                    recognitions: null
+
                 },
                 {
-                    id: "2",
-                    plantID: "PlantID2,",
-                    plantType: "PlantType2,",
+                    id: "PlantID2",
                     commonName: "CommonName2,",
                     cultivar: "Cultivar2,",
                     source: "Source2,",
                     gardenLocation: "BedName2,",
-                    year: "Year2,",
-                    pageURL: "PageURL2,",
-                    plantImageURLs: null,
-                    recognitions: null
                 },
                 {
-                    id: "3",
-                    plantID: "PlantID3",
-                    plantType: "PlantType3",
+                    id: "PlantID3",
                     commonName: "CommonName3",
                     cultivar: "Cultivar3",
                     source: "Source3",
                     gardenLocation: "BedName3",
-                    year: "Year3",
-                    pageURL: "PageURL3",
-                    plantImageURLs: null,
-                    recognitions: null
                 }
                 ])
         };
@@ -86,9 +69,9 @@ describe("Plant list", () => {
     it("Set Filtered Plants", () => {
 
         let plants: Plant[] = [];
-        plants.push(new Plant("Plant 1", "Bed1"));
-        plants.push(new Plant("Plant 2", "Bed2"));
-        plants.push(new Plant("Plant 3", "Bed3"));
+        plants.push(new Plant("PlantID1", "CommonName1", "Cultivar1", "Source1", "GardenLocation1"));
+        plants.push(new Plant("PlantID2", "CommonName2", "Cultivar2", "Source2", "GardenLocation2"));
+        plants.push(new Plant("PlantID3", "CommonName3", "Cultivar3", "Source3", "GardenLocation3"));
 
         expect(plants.length).toBe(3);
 

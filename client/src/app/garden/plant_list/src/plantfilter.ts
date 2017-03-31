@@ -1,8 +1,8 @@
 /**
  * Will filter any given collection of plants based on the provided methods.
  * Used for future reuse and extensibility.
- * @author Shawn Saliyev
- * @author Skye Antinozzi
+ *
+ * @author Iteration 2 - Team Omar Anwar
  */
 import {Plant} from "./plant";
 

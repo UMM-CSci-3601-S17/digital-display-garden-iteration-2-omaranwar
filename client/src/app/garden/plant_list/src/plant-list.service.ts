@@ -1,6 +1,11 @@
 /**
- * @author Skye Antinozzi
- * @author Shawn Saliyev
+ * Provides the ability to request Plant data to be sent from the server. This class also contains
+ * the primary Plant Collection that will be used to store the full list of plant data. Any filtered
+ * plant data should be have Plant references stored within their respective classes. In addition,
+ * this PlantListService also provides the ability to filter the plants contained within the
+ * PlantListComponent.
+ *
+ * @author Iteration 2 - Team Omar Anwar
  */
 import {Injectable} from '@angular/core';
 import { Http } from '@angular/http';
@@ -39,14 +44,6 @@ export class PlantListService {
     }
 
     /**
-     * Returns the plant collection.
-     * @returns {Plant[]} - the returned plants
-     */
-    public getPlants(): Plant[]{
-        return this.plantCollection.getPlants();
-    }
-
-    /**
      * If the data has not already been filtered by the current bed name this method
      * filters the plant data.
      * @param bedName - bed name to filter by
@@ -69,6 +66,11 @@ export class PlantListService {
         }
     }
 
+    /**
+     * Requests that the Plant specified by the provided id be sent from the server.
+     * @param id
+     * @returns {Observable<R>}
+     */
     getPlantById(id: string): Observable<Plant> {
         return this.http.request(API_URL + "plant/" + id).map(res => res.json());
     }

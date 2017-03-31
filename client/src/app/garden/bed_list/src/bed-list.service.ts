@@ -1,6 +1,8 @@
 /**
- * @author Shawn Saliyev
- * @author Skye Antinozzi
+ * The BedListService's primary function is to request all bed names from the server.
+ * These bed names are then loaded into the BedListComponent for viewing and interaction.
+ *
+ * @author Iteration 2 - Team Omar Anwar
  */
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";

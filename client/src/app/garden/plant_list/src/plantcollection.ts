@@ -1,9 +1,8 @@
 /**
- *
  * Represents a collection of plants.
  * Used for future reuse and extensibility.
- * @author Shawn Saliyev
- * @author Skye Antinozzi
+ *
+ * @author Iteration 2 - Team Omar Anwar
  */
 import {Plant} from "./plant";
 

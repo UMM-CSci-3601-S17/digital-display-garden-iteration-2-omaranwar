@@ -1,7 +1,9 @@
-///<reference path="bed.ts"/>
 /**
- * @author Shawn Saliyev
- * @author Skye Antinozzi
+ * Provides all data and related operations for the BedListComponent. This component
+ * is shared within the GardenComoponent that encapsulates both this component and the
+ * PlantListComponent.
+ *
+ * @author Iteration 2 - Team Omar Anwar
  */
 import {OnInit, Component} from "@angular/core";
 import {Bed} from "./bed";
@@ -16,6 +18,7 @@ import {PlantListComponent} from "../../plant_list/src/plant-list.component";
 })
 export class BedListComponent implements OnInit {
 
+    // Full list of all bed names for the BedList
     private bedNames: Bed[];
 
     /**
