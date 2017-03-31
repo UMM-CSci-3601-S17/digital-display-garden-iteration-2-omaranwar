@@ -25,10 +25,15 @@ Get likes, dislikes, pageviews, and comments from plant pages, and store them on
 * [Excel File Requirements](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-2-omaranwar/blob/master/Documentation/ExcelFileRequirements.md)  
 * [Excel Parser Documentation](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-2-omaranwar/blob/master/Documentation/ExcelParser.md)
 * [PlantController](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-2-omaranwar/tree/master/Documentation/PlantController.md)
+* [BuildAndRunProject.sh](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-2-omaranwar/blob/master/Documentation/buildAndLaunchProject.md)  
 
-## Running your project
+## Running your project  
+### Locally   
 > Run the server  
 > Run the client  
+### Remotely 
+> Pull repository 
+> Read [BuildAndRunProject.sh](https://github.com/UMM-CSci-3601-S17/digital-display-garden-iteration-2-omaranwar/blob/master/Documentation/buildAndLaunchProject.md)
 
 ## Testing and Continuous Integration
 
